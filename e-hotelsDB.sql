@@ -132,3 +132,76 @@ CREATE TABLE Room_renting (
       "worker_SSN/SIN" varchar(9),
       "SSN/SIN" varchar(9)
 );
+
+-- ----------------------------
+-- Table structure for Room Booking
+-- ----------------------------
+
+DROP TABLE IF EXISTS RoomBooking
+CREATE TABLE RoomBooking(
+    street_number int,
+    street_name varchar(100),
+    city varchar(100),
+    "state/province" varchar(50),
+    zip varchar(50),
+    room_number int,
+    booking_date DATE,
+    check_in_date DATE,
+    check_out_date DATE,
+    "SSN/SIN" varchar(100),
+    PRIMARY KEY(street_number,street_name,city,"state/province",zip,room_number,booking_date)
+
+);
+-- ----------------------------
+-- Table structure for becomes
+-- ----------------------------
+DROP TABLE IF EXISTS becomes
+CREATE TABLE becomes(
+    street_number int,
+    street_name varchar(100),
+    city varchar(100),
+    "state/province" varchar(100),
+    room_number int,
+    booking_date DATE,
+    check_in_date DATE,
+    check_out_date DATE,
+    PRIMARY KEY(street_number,street_name,city,"state/province",room_number,booking_date, check_in_date, check_out_date),
+    FOREIGN KEY(street_number,street_name,city,"state/province",room_number,booking_date) REFERENCES RoomBooking ON DELETE CASCADE ON UPDATE CASCADE,
+    FOREIGN KEY (street_number,street_name,city,"state/province",room_number,check_in_date, check_out_date) REFERENCES RoomRenting ON DELETE CASCADE ON UPDATE CASCADE
+);
+-- ----------------------------
+-- Table structure for Employee
+-- ----------------------------
+DROP TABLE IF EXISTS Employee
+CREATE TABLE Employee(
+     "worker_SSN/SIN" int,
+     "manager_SSN/SIN" int,
+     first_name varchar(100),
+     middle_name varchar(100),
+     last_name varchar(100),
+     street_number int,
+     street_name varchar(100),
+     apt_number int,
+     city varchar(100),
+     "state/province" varchar(100),
+     zip varchar(100),
+     PRIMARY KEY("worker_SSN/SIN")
+);
+-- ----------------------------
+-- Table structure for Customer
+-- ----------------------------
+DROP TABLE IF EXISTS Customer
+CREATE TABLE Customer(
+     "SSN/SIN" int,
+     first_name varchar(100),
+     middle_name varchar(100),
+     last_name varchar(100),
+     street_number int,
+     street_name string,
+     apt_number int,
+     city varchar(100),
+     "state/province" varchar(100),
+     zip varchar(100),
+     registration_date DATE,
+     PRIMARY KEY("SSN/SIN")
+);
