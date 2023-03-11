@@ -131,7 +131,4 @@ CREATE TABLE Room_renting (
       check_out_date date NOT NULL,
       "worker_SSN/SIN" varchar(9),
       "SSN/SIN" varchar(9)
-      ADD CONSTRAINT fk_room_amenity
-      FOREIGN KEY (street_number, street_name, city, "state/province", zip, room_number)
-      REFERENCES Room(street_number, street_name, city, "state/province", zip, room_number);
 );
