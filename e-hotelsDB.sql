@@ -134,6 +134,79 @@ CREATE TABLE Room_renting (
 );
 
 -- ----------------------------
+-- Table structure for Room Booking
+-- ----------------------------
+
+DROP TABLE IF EXISTS RoomBooking
+CREATE TABLE RoomBooking(
+                            street_number int,
+                            street_name varchar(100),
+                            city varchar(100),
+                            "state/province" varchar(50),
+                            zip varchar(50),
+                            room_number int,
+                            booking_date DATE,
+                            check_in_date DATE,
+                            check_out_date DATE,
+                            "SSN/SIN" varchar(100),
+                            PRIMARY KEY(street_number,street_name,city,"state/province",zip,room_number,booking_date)
+
+);
+-- ----------------------------
+-- Table structure for becomes
+-- ----------------------------
+DROP TABLE IF EXISTS becomes
+CREATE TABLE becomes(
+                        street_number int,
+                        street_name varchar(100),
+                        city varchar(100),
+                        "state/province" varchar(100),
+                        room_number int,
+                        booking_date DATE,
+                        check_in_date DATE,
+                        check_out_date DATE,
+                        PRIMARY KEY(street_number,street_name,city,"state/province",room_number,booking_date, check_in_date, check_out_date),
+                        FOREIGN KEY(street_number,street_name,city,"state/province",room_number,booking_date) REFERENCES RoomBooking ON DELETE CASCADE ON UPDATE CASCADE,
+                        FOREIGN KEY (street_number,street_name,city,"state/province",room_number,check_in_date, check_out_date) REFERENCES RoomRenting ON DELETE CASCADE ON UPDATE CASCADE
+);
+-- ----------------------------
+-- Table structure for Employee
+-- ----------------------------
+DROP TABLE IF EXISTS Employee
+CREATE TABLE Employee(
+                         "worker_SSN/SIN" int,
+                         "manager_SSN/SIN" int,
+                         first_name varchar(100),
+                         middle_name varchar(100),
+                         last_name varchar(100),
+                         street_number int,
+                         street_name varchar(100),
+                         apt_number int,
+                         city varchar(100),
+                         "state/province" varchar(100),
+                         zip varchar(100),
+                         PRIMARY KEY("worker_SSN/SIN")
+);
+-- ----------------------------
+-- Table structure for Customer
+-- ----------------------------
+DROP TABLE IF EXISTS Customer
+CREATE TABLE Customer(
+                         "SSN/SIN" int,
+                         first_name varchar(100),
+                         middle_name varchar(100),
+                         last_name varchar(100),
+                         street_number int,
+                         street_name string,
+                         apt_number int,
+                         city varchar(100),
+                         "state/province" varchar(100),
+                         zip varchar(100),
+                         registration_date DATE,
+                         PRIMARY KEY("SSN/SIN")
+);
+
+-- ----------------------------
 -- Insertion of data into Hotel Chain
 -- ----------------------------
 INSERT INTO Hotel_Chain(chain_name, street_number, street_name, city, "state/province", zip, num_of_hotels)
@@ -257,76 +330,3 @@ VALUES(1001, 'Park Avenue', 'New York', 'NY', 101, '2023-01-10', '2023-01-15', '
       (3001, 'Michigan Avenue', 'Chicago', 'IL', 103, '2023-01-12', '2023-01-17', '2023-01-22'),
       (4001, 'Market Street', 'San Francisco', 'CA', 104, '2023-01-13', '2023-01-18', '2023-01-23'),
       (5001, 'Westheimer Road', 'Houston', 'TX', 105, '2023-01-14', '2023-01-19', '2023-01-24');
-
--- ----------------------------
--- Table structure for Room Booking
--- ----------------------------
-
-DROP TABLE IF EXISTS RoomBooking
-CREATE TABLE RoomBooking(
-    street_number int,
-    street_name varchar(100),
-    city varchar(100),
-    "state/province" varchar(50),
-    zip varchar(50),
-    room_number int,
-    booking_date DATE,
-    check_in_date DATE,
-    check_out_date DATE,
-    "SSN/SIN" varchar(100),
-    PRIMARY KEY(street_number,street_name,city,"state/province",zip,room_number,booking_date)
-
-);
--- ----------------------------
--- Table structure for becomes
--- ----------------------------
-DROP TABLE IF EXISTS becomes
-CREATE TABLE becomes(
-    street_number int,
-    street_name varchar(100),
-    city varchar(100),
-    "state/province" varchar(100),
-    room_number int,
-    booking_date DATE,
-    check_in_date DATE,
-    check_out_date DATE,
-    PRIMARY KEY(street_number,street_name,city,"state/province",room_number,booking_date, check_in_date, check_out_date),
-    FOREIGN KEY(street_number,street_name,city,"state/province",room_number,booking_date) REFERENCES RoomBooking ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (street_number,street_name,city,"state/province",room_number,check_in_date, check_out_date) REFERENCES RoomRenting ON DELETE CASCADE ON UPDATE CASCADE
-);
--- ----------------------------
--- Table structure for Employee
--- ----------------------------
-DROP TABLE IF EXISTS Employee
-CREATE TABLE Employee(
-     "worker_SSN/SIN" int,
-     "manager_SSN/SIN" int,
-     first_name varchar(100),
-     middle_name varchar(100),
-     last_name varchar(100),
-     street_number int,
-     street_name varchar(100),
-     apt_number int,
-     city varchar(100),
-     "state/province" varchar(100),
-     zip varchar(100),
-     PRIMARY KEY("worker_SSN/SIN")
-);
--- ----------------------------
--- Table structure for Customer
--- ----------------------------
-DROP TABLE IF EXISTS Customer
-CREATE TABLE Customer(
-     "SSN/SIN" int,
-     first_name varchar(100),
-     middle_name varchar(100),
-     last_name varchar(100),
-     street_number int,
-     street_name string,
-     apt_number int,
-     city varchar(100),
-     "state/province" varchar(100),
-     zip varchar(100),
-     registration_date DATE,
-     PRIMARY KEY("SSN/SIN")
-);
