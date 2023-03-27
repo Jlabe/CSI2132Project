@@ -28,6 +28,7 @@
 <div class="navbar">
     <a href="index.jsp">Home</a>
     <a href="DataEntry.jsp">Update Room</a>
+    <a href="employeeEntry.jsp">Employee entry</a>
 </div>
 </body>
 </html>
