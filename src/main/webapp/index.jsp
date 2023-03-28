@@ -2,6 +2,11 @@
 <html lang="en">
 <!-- Include navbar.jsp -->
 <jsp:include page="navbar.jsp" />
+
+<%
+    com.demo.RoomService roomService = new com.demo.RoomService();
+    java.util.List<com.demo.Room> rooms = roomService.getRooms();
+%>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,6 +27,10 @@
             border-radius: 5px;
         }
         h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
             text-align: center;
             margin-bottom: 30px;
         }
@@ -49,6 +58,13 @@
         }
         button:hover {
             background-color: #0056b3;
+        }
+
+        .table-container {
+            max-height: 400px; /* Adjust this value to set the desired height of the container */
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -87,5 +103,41 @@
     <input type="number" name="room_price" id="room_price" min="0" required>
     <button type="submit">Search</button>
 </form>
+<h2>Available Rooms</h2>
+<div style="max-width: 800px; margin: 0 auto;">
+
+    <div class="table-container">
+        <table border="1" cellpadding="10" cellspacing="0" style="width: 100%;">
+            <tr>
+                <th>Street Number</th>
+                <th>Street Name</th>
+                <th>City</th>
+                <th>State/Province</th>
+                <th>Zip</th>
+                <th>Room Number</th>
+                <th>Price</th>
+                <th>Capacity</th>
+                <th>Sea/Mountain View</th>
+                <th>Problems/Damage</th>
+            </tr>
+            <% for (com.demo.Room room : rooms) { %>
+            <tr>
+                <td><%= room.getStreet_number() %></td>
+                <td><%= room.getStreet_name() %></td>
+                <td><%= room.getCity() %></td>
+                <td><%= room.getStateProvince() %></td>
+                <td><%= room.getZip() %></td>
+                <td><%= room.getRoom_number() %></td>
+                <td><%= room.getPrice() %></td>
+                <td><%= room.getCapacity() %></td>
+                <td><%= room.getSeaMountainView() %></td>
+                <td><%= room.getProblemsDamages() %></td>
+            </tr>
+            <% } %>
+        </table>
+    </div>
+
+
+</div>
 </body>
 </html>

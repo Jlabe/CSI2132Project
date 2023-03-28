@@ -10,10 +10,10 @@ public class Room {
     private int room_number;
     private int price;
     private int capacity;
-    private int seaMountainView;
-    private int problemsDamages;
+    private String seaMountainView;
+    private String problemsDamages;
 
-    public Room(int street_number, String street_name, String city, String stateProvince, String zip, int room_number, int price, int capacity, int seaMountainView, int problemsDamages) {
+    public Room(int street_number, String street_name, String city, String stateProvince, String zip, int room_number, int price, int capacity, String seaMountainView, String problemsDamages) {
         this.street_number = street_number;
         this.street_name = street_name;
         this.city = city;
@@ -90,19 +90,19 @@ public class Room {
         this.capacity = capacity;
     }
 
-    public int getSeaMountainView() {
+    public String getSeaMountainView() {
         return seaMountainView;
     }
 
-    public void setSeaMountainView(int seaMountainView) {
+    public void setSeaMountainView(String seaMountainView) {
         this.seaMountainView = seaMountainView;
     }
 
-    public int getProblemsDamages() {
+    public String getProblemsDamages() {
         return problemsDamages;
     }
 
-    public void setProblemsDamages(int problemsDamages) {
+    public void setProblemsDamages(String problemsDamages) {
         this.problemsDamages = problemsDamages;
     }
 
