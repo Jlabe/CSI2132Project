@@ -5,7 +5,7 @@ import java.sql.*;
 public class ConnectionDB {
 
     private final String dbServerPort = "5432";
-    private final String dbName = "neondb;
+    private final String dbName = "neondb";
     private final String dbusername = "jey12345678";
     private final String dbpassword = "X4QKwSL9fcGe";
 
