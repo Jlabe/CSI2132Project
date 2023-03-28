@@ -1,3 +1,6 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.demo.Room" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 <!-- Include navbar.jsp -->
@@ -5,7 +8,25 @@
 
 <%
     com.demo.RoomService roomService = new com.demo.RoomService();
-    java.util.List<com.demo.Room> rooms = roomService.getRooms();
+    com.demo.FindRoom roomSearch = new com.demo.FindRoom();
+    java.util.List<com.demo.Room> rooms = null;
+    try {
+        rooms = roomService.getRooms();
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+
+    ArrayList<String> formData = (ArrayList<String>) request.getSession().getAttribute("formData");
+
+    try {
+        if (formData != null){
+            List<Room> roomsThatFitTheSearchCriteria = roomSearch.getRoomFromSearch(formData);
+            System.out.println(roomsThatFitTheSearchCriteria);
+        }
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+    System.out.println(formData);
 %>
 <head>
     <meta charset="UTF-8">
@@ -89,11 +110,9 @@
     <label for="hotel_category">Hotel Category:</label>
     <select name="hotel_category" id="hotel_category" required>
         <option value="">Choose a category</option>
-        <option value="1">1 Star</option>
-        <option value="2">2 Stars</option>
-        <option value="3">3 Stars</option>
-        <option value="4">4 Stars</option>
-        <option value="5">5 Stars</option>
+        <option value="1">Budget</option>
+        <option value="2">Mid-range</option>
+        <option value="3">Luxury</option>
     </select>
 
     <label for="total_rooms">Total Rooms in Hotel:</label>

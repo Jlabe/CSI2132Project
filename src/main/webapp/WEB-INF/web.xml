@@ -4,4 +4,14 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+    <servlet-name>SearchRoomsServlet</servlet-name>
+    <servlet-class>com.demo.SearchRoomsServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>SearchRoomsServlet</servlet-name>
+    <url-pattern>/searchRooms</url-pattern>
+  </servlet-mapping>
+
 </web-app>
