@@ -41,6 +41,8 @@ public class FindRoom {
 
         List<Room> rooms = new ArrayList<>();
 
+        String seaMountainView = "";
+
         try (Connection con = db.getConnection()) {
             PreparedStatement stmt = con.prepareStatement(sql);
 
@@ -58,6 +60,13 @@ public class FindRoom {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
+
+                if (rs.getBoolean("sea_mountain_view") == false) {
+                    seaMountainView = "NO";
+                } else {
+                    seaMountainView = "YES";
+                }
+
                 Room room = new Room(
                         rs.getInt("street_number"),
                         rs.getString("street_name"),
@@ -67,7 +76,7 @@ public class FindRoom {
                         rs.getInt("room_number"),
                         rs.getInt("price"),
                         rs.getInt("capacity"),
-                        rs.getString("sea_mountain_view"),
+                        seaMountainView,
                         rs.getString("problems_damages")
                 );
                 rooms.add(room);
