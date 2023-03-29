@@ -28,7 +28,7 @@ public class HotelService {
                         rs.getInt("street_number"),
                         rs.getString("street_name"),
                         rs.getString("city"),
-                        rs.getString("stateProvince"),
+                        rs.getString("state_province"),
                         rs.getString("zip"),
                         rs.getInt("num_of_rooms"),
                         rs.getString("contact_email"),

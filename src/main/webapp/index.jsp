@@ -162,6 +162,7 @@
     <div class="table-container">
         <table border="1" cellpadding="10" cellspacing="0" style="width: 100%;">
             <tr>
+                <th></th>
                 <th>Street Number</th>
                 <th>Street Name</th>
                 <th>City</th>
@@ -175,7 +176,7 @@
             </tr>
             <% for (com.demo.Room room : roomsThatFitTheSearchCriteria) { %>
             <tr>
-                <td><a href="booking.jsp?street_number=<%= room.getStreet_number() %>&street_name=<%= room.getStreet_name() %>&city=<%= room.getCity() %>&stateProvince=<%= room.getStateProvince() %>&zip=<%= room.getZip() %>&room_number=<%= room.getRoom_number() %>">Book Room</a></td>
+                <td><a href="booking.jsp?street_number=<%= room.getStreet_number() %>&street_name=<%= room.getStreet_name() %>&city=<%= room.getCity() %>&stateProvince=<%= room.getStateProvince() %>&zip=<%= room.getZip() %>&room_number=<%= room.getRoom_number() %>&start_date=<%= (room.getStart_date() != null) ? room.getStart_date() : "" %>&end_date=<%= (room.getEnd_date() != null) ? room.getEnd_date() : "" %>">Book Room</a></td>
                 <td><%= room.getStreet_number() %></td>
                 <td><%= room.getStreet_name() %></td>
                 <td><%= room.getCity() %></td>

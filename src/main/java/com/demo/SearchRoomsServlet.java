@@ -3,7 +3,6 @@ package com.demo;
 import java.io.IOException;
 import java.util.ArrayList;
 import jakarta.servlet.*;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 //@WebServlet("/searchRooms")

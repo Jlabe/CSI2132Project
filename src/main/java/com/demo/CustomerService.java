@@ -3,6 +3,8 @@ package com.demo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +33,7 @@ public class CustomerService {
                         rs.getInt("street_number"),
                         rs.getString("street_name"),
                         rs.getString("city"),
-                        rs.getString("stateProvince"),
+                        rs.getString("state_province"),
                         rs.getInt("apt_number"),
                         rs.getString("zip"),
                         rs.getString("registration_date")
@@ -58,7 +60,7 @@ public class CustomerService {
         ConnectionDB db = new ConnectionDB();
 
         // sql query
-        String insertCustomerQuery = "INSERT INTO customer (ssn ,first_name, middle_name, last_name, street_number,street_name, apt_number, city, stateProvince,zip, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?);";
+        String insertCustomerQuery = "INSERT INTO customer (ssn ,first_name, middle_name, last_name, street_number,street_name, apt_number, city, state_province ,zip, registration_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?);";
 
         // try connect to database, catch any exceptions
         try {
@@ -79,7 +81,12 @@ public class CustomerService {
             stmt.setString(8,customer.getCity());
             stmt.setString(9, customer.getStateProvince());
             stmt.setString(10, customer.getZip());
-            stmt.setString(11,customer.getRegistration_date());
+
+            LocalDate localDate = LocalDate.parse(customer.getRegistration_date(), DateTimeFormatter.ISO_LOCAL_DATE);
+            java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+
+            stmt.setDate(11, sqlDate);
+
 
             // execute the query
             stmt.executeUpdate();
@@ -134,7 +141,7 @@ public class CustomerService {
         String message = "";
 
         // sql query
-        String sql = "UPDATE Customer SET ssn = ? ,first_name = ?, middle_name = ?, last_name = ?, street_number = ?,street_name = ?, apt_number = ?, stateProvince = ? ,zip = ?, registration_date = ? WHERE ssn = ?;";
+        String sql = "UPDATE Customer SET ssn = ? ,first_name = ?, middle_name = ?, last_name = ?, street_number = ?,street_name = ?, apt_number = ?, state_province = ? ,zip = ?, registration_date = ? WHERE ssn = ?;";
 
         // connection object
         ConnectionDB db = new ConnectionDB();
@@ -158,7 +165,12 @@ public class CustomerService {
             stmt.setString(8,customer.getCity());
             stmt.setString(9, customer.getStateProvince());
             stmt.setString(10, customer.getZip());
-            stmt.setString(11,customer.getRegistration_date());
+
+            LocalDate localDate = LocalDate.parse(customer.getRegistration_date(), DateTimeFormatter.ISO_LOCAL_DATE);
+            java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+
+            stmt.setDate(11, sqlDate);
+
 
             // execute the query
             stmt.executeUpdate();

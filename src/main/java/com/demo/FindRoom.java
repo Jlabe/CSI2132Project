@@ -79,6 +79,8 @@ public class FindRoom {
                         seaMountainView,
                         rs.getString("problems_damages")
                 );
+                room.setStart_date(rs.getString("check_in_date"));
+                room.setEnd_date(rs.getString("check_out_date"));
                 rooms.add(room);
             }
 

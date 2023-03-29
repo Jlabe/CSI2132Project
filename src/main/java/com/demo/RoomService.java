@@ -9,7 +9,9 @@ import java.util.List;
 public class RoomService {
 
     public List<Room> getRooms() throws Exception {
-        String sql = "SELECT * FROM room";
+        String sql = "SELECT room.*, room_renting.check_in_date, room_renting.check_out_date\n" +
+                "FROM room\n" +
+                "         LEFT JOIN room_renting ON room_renting.street_name = room.street_name AND room_renting.street_number = room.street_number AND room_renting.city = room.city AND room_renting.state_province = room.state_province AND room_renting.zip = room.zip AND room_renting.room_number = room.room_number ;\n";
 
         ConnectionDB db = new ConnectionDB();
 
@@ -40,6 +42,8 @@ public class RoomService {
                         seaMountainView,
                         rs.getString("problems_damages")
                 );
+                room.setStart_date(rs.getString("check_in_date"));
+                room.setEnd_date(rs.getString("check_out_date"));
                 rooms.add(room);
             }
 

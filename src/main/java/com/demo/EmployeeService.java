@@ -34,7 +34,7 @@ public class EmployeeService {
                         rs.getString("street_name"),
                         rs.getInt("apt_number"),
                         rs.getString("city"),
-                        rs.getString("stateProvince"),
+                        rs.getString("state_province"),
                         rs.getString("zip")
                 );
                 employees.add(employee);

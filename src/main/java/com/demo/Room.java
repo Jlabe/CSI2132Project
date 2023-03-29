@@ -12,6 +12,8 @@ public class Room {
     private int capacity;
     private String seaMountainView;
     private String problemsDamages;
+    private String start_date;
+    private String end_date;
 
     public Room(int street_number, String street_name, String city, String stateProvince, String zip, int room_number, int price, int capacity, String seaMountainView, String problemsDamages) {
         this.street_number = street_number;
@@ -104,6 +106,22 @@ public class Room {
 
     public void setProblemsDamages(String problemsDamages) {
         this.problemsDamages = problemsDamages;
+    }
+
+    public String getStart_date() {
+        return start_date;
+    }
+
+    public void setStart_date(String start_date) {
+        this.start_date = start_date;
+    }
+
+    public String getEnd_date() {
+        return end_date;
+    }
+
+    public void setEnd_date(String end_date) {
+        this.end_date = end_date;
     }
 
     @Override
