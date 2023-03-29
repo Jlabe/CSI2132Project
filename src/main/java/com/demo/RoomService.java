@@ -196,7 +196,49 @@ public class RoomService {
         return message;
     }
 
+    public Room getRoomByUniqueIdentifiers(String street_number, String street_name, String city, String stateProvince, String zip, String room_number) throws Exception {
+        int street_number_to_int = Integer.parseInt(street_number);
+        int room_number_to_int = Integer.parseInt(room_number);
 
+        String sql = "SELECT * FROM room WHERE street_number = ? AND street_name = ? AND city = ? AND state_province = ? AND zip = ? AND room_number = ?";
 
+        ConnectionDB db = new ConnectionDB();
+
+        try (Connection con = db.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setInt(1, street_number_to_int);
+            stmt.setString(2, street_name);
+            stmt.setString(3, city);
+            stmt.setString(4, stateProvince);
+            stmt.setString(5, zip);
+            stmt.setInt(6, room_number_to_int);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Room room = new Room(
+                        rs.getInt("street_number"),
+                        rs.getString("street_name"),
+                        rs.getString("city"),
+                        rs.getString("state_province"),
+                        rs.getString("zip"),
+                        rs.getInt("room_number"),
+                        rs.getInt("price"),
+                        rs.getInt("capacity"),
+                        rs.getString("sea_mountain_view"),
+                        rs.getString("problems_damages")
+                );
+                return room;
+            } else {
+                throw new Exception("Room not found");
+            }
+        } catch (Exception e) {
+            // throw any errors occurred
+            throw new Exception(e.getMessage());
+        } finally {
+            db.close();
+        }
+    }
 
 }
