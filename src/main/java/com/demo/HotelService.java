@@ -137,7 +137,7 @@ public class HotelService {
         String message = "";
 
         // sql query
-        String sql = "UPDATE Hotel SET chain_name = ? , street_number = ? , street_name = ? , city = ?, stateProvince = ? , zip = ? , num_of_rooms = ? ,contact_email = ?,category = ? WHERE street_number = ? , street_name = ? , city = ?, stateProvince = ? , zip = ?;";
+        String sql = "UPDATE Hotel SET chain_name = ? , street_number = ? , street_name = ? , city = ?, state_province = ? , zip = ? , num_of_rooms = ? ,contact_email = ?,category = ? WHERE street_number = ? , street_name = ? , city = ?, stateProvince = ? , zip = ?;";
 
         // connection object
         ConnectionDB db = new ConnectionDB();

@@ -59,7 +59,7 @@ public class EmployeeService {
         ConnectionDB db = new ConnectionDB();
 
         // sql query
-        String insertEmployeeQuery = "INSERT INTO Employee (worker_ssn , manager_ssn, first_name, middle_name, last_name, street_number,street_name, apt_number, city, stateProvince,zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?);";
+        String insertEmployeeQuery = "INSERT INTO Employee (worker_ssn , manager_ssn, first_name, middle_name, last_name, street_number,street_name, apt_number, city, state_province,zip) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?, ?, ?);";
 
         // try connect to database, catch any exceptions
         try {
@@ -135,7 +135,7 @@ public class EmployeeService {
         String message = "";
 
         // sql query
-        String sql = "UPDATE Customer SET worker_ssn = ?, employee_ssn = ?, first_name = ?, middle_name = ?, last_name = ?, street_number = ?,street_name = ?, apt_number = ?, stateProvince = ? ,zip = ? WHERE worker_ssn = ?;";
+        String sql = "UPDATE Customer SET worker_ssn = ?, employee_ssn = ?, first_name = ?, middle_name = ?, last_name = ?, street_number = ?,street_name = ?, apt_number = ?, state_province = ? ,zip = ? WHERE worker_ssn = ?;";
 
         // connection object
         ConnectionDB db = new ConnectionDB();
