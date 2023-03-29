@@ -2,7 +2,7 @@ package com.demo;
 
 public class Customer {
 
-    private String SSNSIN;
+    private String SSN;
     private String first_name;
     private String middle_name;
     private String last_name;
@@ -10,13 +10,12 @@ public class Customer {
     private String street_name;
     private String city;
     private String stateProvince;
-    private String apt_number;
+    private int apt_number;
     private String zip;
-    private int room_number;
     private String registration_date;
 
-    public Customer(String SSNSIN, String first_name, String middle_name, String last_name, int street_number, String street_name, String city, String stateProvince, String apt_number, String zip, int room_number, String registration_date) {
-        this.SSNSIN = SSNSIN;
+    public Customer(String SSN, String first_name, String middle_name, String last_name, int street_number, String street_name, String city, String stateProvince, int apt_number, String zip, String registration_date) {
+        this.SSN = SSN;
         this.first_name = first_name;
         this.middle_name = middle_name;
         this.last_name = last_name;
@@ -26,16 +25,15 @@ public class Customer {
         this.stateProvince = stateProvince;
         this.apt_number = apt_number;
         this.zip = zip;
-        this.room_number = room_number;
         this.registration_date = registration_date;
     }
 
-    public String getSSNSIN() {
-        return SSNSIN;
+    public String getSSN() {
+        return SSN;
     }
 
     public void setSSNSIN(String SSNSIN) {
-        this.SSNSIN = SSNSIN;
+        this.SSN = SSN;
     }
 
     public String getFirst_name() {
@@ -94,11 +92,11 @@ public class Customer {
         this.stateProvince = stateProvince;
     }
 
-    public String getApt_number() {
+    public int getApt_number() {
         return apt_number;
     }
 
-    public void setApt_number(String apt_number) {
+    public void setApt_number(int apt_number) {
         this.apt_number = apt_number;
     }
 
@@ -108,14 +106,6 @@ public class Customer {
 
     public void setZip(String zip) {
         this.zip = zip;
-    }
-
-    public int getRoom_number() {
-        return room_number;
-    }
-
-    public void setRoom_number(int room_number) {
-        this.room_number = room_number;
     }
 
     public String getRegistration_date() {
@@ -129,7 +119,7 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "SSNSIN='" + SSNSIN + '\'' +
+                "SSNSIN='" + SSN + '\'' +
                 ", first_name='" + first_name + '\'' +
                 ", middle_name='" + middle_name + '\'' +
                 ", last_name='" + last_name + '\'' +
@@ -139,7 +129,6 @@ public class Customer {
                 ", stateProvince='" + stateProvince + '\'' +
                 ", apt_number='" + apt_number + '\'' +
                 ", zip='" + zip + '\'' +
-                ", room_number=" + room_number +
                 ", registration_date='" + registration_date + '\'' +
                 '}';
     }

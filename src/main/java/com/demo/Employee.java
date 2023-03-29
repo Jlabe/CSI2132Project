@@ -2,34 +2,60 @@ package com.demo;
 
 public class Employee {
 
-    private int SSN;
+    private String worker_ssn;
+    private String manager_ssn;
     private String first_name;
+    private String middle_name;
     private String last_name;
     private int street_number;
+    private int apt_number;
     private String street_name;
     private String city;
     private String stateProvince;
     private String zip;
-    private String registration_date;
 
-    public Employee(int SSN, String first_name, String last_name, int street_number, String street_name, String city, String stateProvince, String zip, String registration_date) {
-        this.SSN = SSN;
+    public Employee(String worker_ssn, String manager_ssn, String first_name,String middle_name, String last_name, int street_number, String street_name, int apt_number, String city, String stateProvince, String zip) {
+        this.worker_ssn = worker_ssn;
+        this.manager_ssn = manager_ssn;
         this.first_name = first_name;
+        this.middle_name = middle_name;
         this.last_name = last_name;
         this.street_number = street_number;
         this.street_name = street_name;
+        this.apt_number = apt_number;
         this.city = city;
         this.stateProvince = stateProvince;
         this.zip = zip;
-        this.registration_date = registration_date;
     }
 
-    public int getSSN() {
-        return SSN;
+    public String getWorker_ssn() {
+        return worker_ssn;
     }
 
-    public void setSSN(int SSN) {
-        this.SSN = SSN;
+    public void setWorker_ssn(String worker_ssn) {
+        this.worker_ssn = worker_ssn;
+    }
+
+    public String getManager_ssn() {
+        return manager_ssn;
+    }
+    public void setManager_ssn(String manager_ssn) {
+        this.manager_ssn = manager_ssn;
+    }
+
+    public int getApt_number() {
+        return apt_number;
+    }
+    public void setApt_number(int apt_number) {
+        this.apt_number = apt_number;
+    }
+
+    public String getMiddle_name() {
+        return middle_name;
+    }
+
+    public void setMiddle_name(String middle_name) {
+        this.middle_name = middle_name;
     }
 
     public String getFirst_name() {
@@ -88,18 +114,11 @@ public class Employee {
         this.zip = zip;
     }
 
-    public String getRegistration_date() {
-        return registration_date;
-    }
-
-    public void setRegistration_date(String registration_date) {
-        this.registration_date = registration_date;
-    }
-
     @Override
     public String toString() {
         return "Employee{" +
-                "SSN=" + SSN +
+                "worker_ssn=" + worker_ssn + '\'' +
+                "manager_ssn=" + manager_ssn + '\'' +
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
                 ", street_number=" + street_number +
@@ -107,7 +126,6 @@ public class Employee {
                 ", city='" + city + '\'' +
                 ", stateProvince='" + stateProvince + '\'' +
                 ", zip='" + zip + '\'' +
-                ", registration_date='" + registration_date + '\'' +
                 '}';
     }
 }
