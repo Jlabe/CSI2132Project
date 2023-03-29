@@ -35,7 +35,7 @@ public class FindRoom {
                 "  AND chain_name = ?" +
                 "  AND category = ?" +
                 "  AND CAST(num_of_rooms AS INTEGER) = ?" +
-                "  AND CAST(price AS INTEGER) = ?;";
+                "  AND CAST(price AS INTEGER) <= ?;";
 
         ConnectionDB db = new ConnectionDB();
 

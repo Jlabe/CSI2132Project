@@ -18,15 +18,21 @@
 
     ArrayList<String> formData = (ArrayList<String>) request.getSession().getAttribute("formData");
 
-    try {
-        if (formData != null){
-            List<Room> roomsThatFitTheSearchCriteria = roomSearch.getRoomFromSearch(formData);
+    List<Room> roomsThatFitTheSearchCriteria = new ArrayList<>();
+
+    if (formData == null) {
+        roomsThatFitTheSearchCriteria = rooms;
+    } else {
+        try {
+            roomsThatFitTheSearchCriteria = roomSearch.getRoomFromSearch(formData);
             System.out.println(roomsThatFitTheSearchCriteria);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-    } catch (Exception e) {
-        throw new RuntimeException(e);
+        request.getSession().removeAttribute("formData");
     }
     System.out.println(formData);
+
 %>
 <head>
     <meta charset="UTF-8">
@@ -52,6 +58,10 @@
             margin-bottom: 30px;
         }
         h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        p {
             text-align: center;
             margin-bottom: 30px;
         }
@@ -91,6 +101,10 @@
 </head>
 <body>
 <h1>Find a Room</h1>
+<p>
+    To use this tool, enter the values in the following form that
+    fit the criteria of the room you are searching for and press search.
+</p>
 <form action="searchRooms" method="POST">
     <label for="start_date">Start Date:</label>
     <input type="date" name="start_date" id="start_date" required>
@@ -123,8 +137,28 @@
     <button type="submit">Search</button>
 </form>
 <h2>Available Rooms</h2>
+
+<% if (formData != null) { %>
+<div style="max-width: 800px; margin: 0 auto;">
+    <p>
+        <strong>With the following criteria:</strong><br>
+        Start Date: <%= formData.get(0) %><br>
+        End Date: <%= formData.get(1) %><br>
+        Room Capacity: <%= formData.get(2) %><br>
+        Area: <%= formData.get(3) %><br>
+        Hotel Chain: <%= formData.get(4) %><br>
+        Hotel Category: <%= formData.get(5) %><br>
+        Total Rooms in Hotel: <%= formData.get(6) %><br>
+        Room Price: <%= formData.get(7) %>
+    </p>
+</div>
+<% } %>
+
 <div style="max-width: 800px; margin: 0 auto;">
 
+    <% if (roomsThatFitTheSearchCriteria.isEmpty()) { %>
+    <p>There are no available rooms that fit this criteria.</p>
+    <% } else { %>
     <div class="table-container">
         <table border="1" cellpadding="10" cellspacing="0" style="width: 100%;">
             <tr>
@@ -139,7 +173,7 @@
                 <th>Sea/Mountain View</th>
                 <th>Problems/Damage</th>
             </tr>
-            <% for (com.demo.Room room : rooms) { %>
+            <% for (com.demo.Room room : roomsThatFitTheSearchCriteria) { %>
             <tr>
                 <td><%= room.getStreet_number() %></td>
                 <td><%= room.getStreet_name() %></td>
@@ -155,6 +189,9 @@
             <% } %>
         </table>
     </div>
+    <% } %>
+
+</div>
 
 
 </div>
