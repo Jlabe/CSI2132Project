@@ -1,6 +1,15 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ page import="java.util.List" %>
+<%@ page import="com.demo.RoomService" %>
+<%@ page import="com.demo.Room" %>
+<%@ page import="com.demo.Message" %>
+<%@ page import="java.util.ArrayList" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
-<!-- Include navbar.jsp -->
+
 <jsp:include page="navbar.jsp" />
 
 <head>
@@ -62,13 +71,31 @@
 <h1>Hotel Management</h1>
 <div class="container">
     <h2>Customer</h2>
-    <form id="customer-form">
-        <label for="customer_name">Customer Name:</label>
-        <input type="text" name="customer_name" id="customer_name" required>
+    <form id="customer-form" action="insert-customer-controller.jsp" method="POST">
+        <label for="customer_ssn">Customer SSN/SIN:</label>
+        <input type="text" id="customer_ssn" name="customer_ssn" pattern="^\d{9}$" title="Please enter a 9-digit number" required>
+        <label for="customer_first_name">Customer First Name:</label>
+        <input type = "text" name = "customer_first_name" id = "customer_first_name" required>
+        <label for="customer_middle_name">Customer Middle Name:</label>
+        <input type = "text" name = "customer_middle_name" id = "customer_middle_name" required>
+        <label for="customer_last_name">Customer Last Name:</label>
+        <input type = "text" name = "customer_last_name" id = "customer_last_name" required>
+        <label for="customer_street_number">Customer Street Number:</label>
+        <input type = "number" name = "customer_street_number" id = "customer_street_number" required>
+        <label for="customer_street_name">Customer Street Name:</label>
+        <input type = "text" name = "customer_street_name" id = "customer_street_name" required>
+        <label for="customer_city">Customer City:</label>
+        <input type = "text" name = "customer_city" id = "customer_city" required>
+        <label for="customer_stateProvince">Customer State/Province:</label>
+        <input type = "text" name = "customer_stateProvince" id = "customer_stateProvince" required>
+        <label for="customer_aptNumber">Customer Apartment Number:</label>
+        <input type = "number" name = "customer_aptNumber" id = "customer_aptNumber" >
+        <label for="customer_zip">Customer Zip:</label>
+        <input type = "text" name = "customer_zip" id = "customer_zip" required>
+        <label for="customer_registration_date">Customer Registration Date:</label>
+        <input type = "text" name = "customer_registration_date" id = "customer_registration_date" required>
+        <button type="submit">Insert Customer</button>
 
-        <!-- Add other customer-related fields here -->
-
-        <button type="submit">Save</button>
     </form>
 </div>
 
