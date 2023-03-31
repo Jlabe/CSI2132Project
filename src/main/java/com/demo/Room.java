@@ -10,14 +10,14 @@ public class Room {
     private String stateProvince;
     private String zip;
     private int room_number;
-    private int price;
+    private double price;
     private int capacity;
     private String seaMountainView;
     private String problemsDamages;
     private Date check_in_date;
     private Date check_out_date;
 
-    public Room(int street_number, String street_name, String city, String stateProvince, String zip, int room_number, int price, int capacity, String seaMountainView, String problemsDamages, Date check_in_date, Date check_out_date) {
+    public Room(int street_number, String street_name, String city, String stateProvince, String zip, int room_number, double price, int capacity, String seaMountainView, String problemsDamages, Date check_in_date, Date check_out_date) {
         this.street_number = street_number;
         this.street_name = street_name;
         this.city = city;
@@ -80,11 +80,11 @@ public class Room {
         this.room_number = room_number;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

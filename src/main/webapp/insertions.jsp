@@ -155,12 +155,31 @@
 
 <div class="container">
     <h2>Room</h2>
-    <form id="room-form">
-        <label for="room_number">Room Number:</label>
+    <form id="room-form" action="insert-room-controller.jsp" method="POST">
+        <label for="room_street_number">Room Street Number:</label>
+        <input type="number" name="room_street_number" id="room_street_number" required>
+        <label for="room_street_name">Room Street Name: </label>
+        <input type="text" name="room_street_name" id="room_street_name" required>
+        <label for="room_city">Room City: </label>
+        <input type="text" name="room_city" id="room_city" required>
+        <label for="room_state_province">Room State/Province: </label>
+        <input type="text" name="room_state_province" id="room_state_province" required>
+        <label for="room_zip">Room Zip: </label>
+        <input type="text" name="room_zip" id="room_zip" required>
+        <label for="room_number">Room Number: </label>
         <input type="number" name="room_number" id="room_number" required>
-
-        <!-- Add other room-related fields here -->
-
+        <label for="room_price">Room Price: </label>
+        <input type="number" name="room_price" id="room_price" required>
+        <label for="room_capacity">Room Capacity: </label>
+        <input type="number" name="room_capacity" id="room_capacity" required>
+        <label for="room_sea_mountain_view">Room Sea/Mountain View: </label>
+        <input type="text" name="room_sea_mountain_view" id="room_sea_mountain_view" required>
+        <label for = "room_problems_damages"> Problems and Damages: </label>
+        <input type="text" name="room_problems_damages" id="room_problems_damages" required>
+        <label for = "room_check_in_date"> Check in date: </label>
+        <input type="text" name="room_check_in_date" id= "room_check_in_date" required>
+        <label for = "room_check_out_date"> Check out date: </label>
+        <input type="text" name="room_check_out_date" id= "room_check_out_date" required>
         <button type="submit">Save</button>
     </form>
 </div>

@@ -80,7 +80,7 @@ public class RoomService {
             stmt.setString(4,room.getStateProvince());
             stmt.setString(5,room.getZip());
             stmt.setInt(6, room.getRoom_number() );
-            stmt.setInt(7,room.getPrice());
+            stmt.setDouble(7,room.getPrice());
             stmt.setInt(8,room.getCapacity());
 
             if(room.getSeaMountainView().equals("YES")){
@@ -177,6 +177,7 @@ public class RoomService {
             stmt.setInt(6, room.getRoom_number() );
             stmt.setInt(7,room.getPrice());
             stmt.setInt(8,room.getCapacity());
+
 
             if(room.getSeaMountainView().equals("YES")){
                 stmt.setBoolean(9,true);
