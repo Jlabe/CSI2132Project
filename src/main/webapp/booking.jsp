@@ -89,8 +89,16 @@
     <h2>Booking Information</h2>
     <p>Please fill out the following information to book this room.</p>
     <br>
-    <form action="processBooking.jsp" method="post">
-        <%--<input type="hidden" name="room_id" value="<%= room.getId() %>" />--%>
+    <form action="bookingServlet", method="post">
+        <input type="hidden" name="hidden_street_number" value="<%= street_number %>" />
+        <input type="hidden" name="hidden_street_name" value="<%= street_name %>" />
+        <input type="hidden" name="hidden_city" value="<%= city %>" />
+        <input type="hidden" name="hidden_stateProvince" value="<%= stateProvince %>" />
+        <input type="hidden" name="hidden_zip" value="<%= zip %>" />
+        <input type="hidden" name="hidden_room_number" value="<%= room_number %>" />
+        <input type="hidden" name="hidden_start_date" value="<%= start_date %>" />
+        <input type="hidden" name="hidden_end_date" value="<%= end_date %>" />
+    <%--<input type="hidden" name="room_id" value="<%= room.getId() %>" />--%>
         <label for="first_name">First Name:</label>
         <input type="text" id="first_name" name="first_name" required>
         <label for="middle_name">Middle Name:</label>
@@ -102,7 +110,7 @@
         <label for="phone_number">Phone Number:</label>
         <input type="tel" id="phone_number" name="phone_number" required>
         <label for="ssn">Social Security Number:</label>
-        <input type="text" id="ssn" name="ssn" required>
+        <input type="text" id="ssn" name="ssn" pattern="^\d{9}$" title="Please enter a 9-digit number" required>
         <label for="street_number">Street Number:</label>
         <input type="number" id="street_number" name="street_number" required>
         <label for="street_name">Street Name:</label>
