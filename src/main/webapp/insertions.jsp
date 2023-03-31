@@ -154,7 +154,10 @@
                         <button type="submit" class="btn btn-danger">DELETE</button>
                     </form>
                 </td>
-                <td><a href="">EDIT</a></td>
+                <td><form action="EditCustomerServlet" method="POST">
+                    <input type="hidden" name="ssn" value="<%= customer.getSSN() %>">
+                    <button type="submit" class="btn btn-primary">EDIT</button>
+                </form></td>
                 <td><%= customer.getSSN() %></td>
                 <td><%= customer.getFirst_name() %></td>
                 <td><%= customer.getMiddle_name() %></td>

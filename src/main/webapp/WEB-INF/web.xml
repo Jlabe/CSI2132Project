@@ -40,6 +40,16 @@
     <servlet-class>com.demo.DeleteRoomServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>EditCustomerServlet</servlet-name>
+    <servlet-class>com.demo.EditCustomerServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>UpdateCustomerServlet</servlet-name>
+    <servlet-class>com.demo.UpdateCustomerServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>SearchRoomsServlet</servlet-name>
     <url-pattern>/searchRooms</url-pattern>
@@ -73,6 +83,16 @@
   <servlet-mapping>
     <servlet-name>DeleteRoomServlet</servlet-name>
     <url-pattern>/DeleteRoomServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>EditCustomerServlet</servlet-name>
+    <url-pattern>/EditCustomerServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>UpdateCustomerServlet</servlet-name>
+    <url-pattern>/UpdateCustomerServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>
