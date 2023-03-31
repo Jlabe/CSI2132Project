@@ -27,7 +27,7 @@
 <body>
 <div class="navbar">
     <a href="index.jsp">Home</a>
-    <a href="DataEntry.jsp">Rooms</a>
+    <a href="insertions.jsp">Insertions</a>
     <a href="employeeEntry.jsp">Employee entry</a>
 </div>
 </body>

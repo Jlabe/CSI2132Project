@@ -13,6 +13,7 @@
 <%@ page import="java.util.ArrayList" %>
 
 <%
+    int customer_aptNumber;
     // get values from the request
     String ssn = request.getParameter("customer_ssn");
 
@@ -23,22 +24,28 @@
     String street_name = request.getParameter("customer_street_name");
     String customer_city = request.getParameter("customer_city");
     String customer_stateProvince = request.getParameter("customer_stateProvince");
-    int customer_aptNumber = Integer.valueOf(request.getParameter("customer_aptNumber"));
+    if(request.getParameter("customer_aptNumber").trim().equals("")){
+        customer_aptNumber = -1;
+    }
+    else{
+        customer_aptNumber = Integer.valueOf(request.getParameter("customer_aptNumber"));
+    }
+
     String customer_zip = request.getParameter("customer_zip");
     String customer_registration_date = request.getParameter("customer_registration_date");
 
 
     CustomerService customerService = new CustomerService();
-    // create student object
+    // create customer object
     Customer customer  = new Customer(ssn,firstName,middleName,lastName,street_number,street_name,customer_city,customer_stateProvince, customer_aptNumber, customer_zip, customer_registration_date);
 
     Message msg;
-    // try to create a new student
+    // try to create a new customer
     try {
         String value = customerService.createCustomer(customer);
         // if the value contains error/Error then this is an error message
         if (value.contains("Error") || value.contains("error")) msg = new Message("error", value);
-            // else the student was successfully created
+            // else the customer was successfully created
         else msg = new Message("success", value);
     } catch (Exception e) {
         e.printStackTrace();

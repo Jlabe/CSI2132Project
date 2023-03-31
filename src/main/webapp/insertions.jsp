@@ -68,7 +68,7 @@
 
 </head>
 <body>
-<h1>Hotel Management</h1>
+<h1>Hotel Management Insertions</h1>
 <div class="container">
     <h2>Customer</h2>
     <form id="customer-form" action="insert-customer-controller.jsp" method="POST">
@@ -77,7 +77,7 @@
         <label for="customer_first_name">Customer First Name:</label>
         <input type = "text" name = "customer_first_name" id = "customer_first_name" required>
         <label for="customer_middle_name">Customer Middle Name:</label>
-        <input type = "text" name = "customer_middle_name" id = "customer_middle_name" required>
+        <input type = "text" name = "customer_middle_name" id = "customer_middle_name">
         <label for="customer_last_name">Customer Last Name:</label>
         <input type = "text" name = "customer_last_name" id = "customer_last_name" required>
         <label for="customer_street_number">Customer Street Number:</label>
@@ -101,23 +101,54 @@
 
 <div class="container">
     <h2>Employee</h2>
-    <form id="employee-form">
-        <label for="employee_name">Employee Name:</label>
-        <input type="text" name="employee_name" id="employee_name"required>
-        <!-- Add other employee-related fields here -->
-
-        <button type="submit">Save</button>
+    <form id="employee-form" action="insert-employee-controller.jsp" method="POST">
+        <label for="employee_ssn">Employee SSN/SIN:</label>
+        <input type="text" name="employee_ssn" id="employee_ssn" required>
+        <label for="manager_ssn">Manager SSN/SIN:</label>
+        <input type = "text" name = "manager_ssn" id = "manager_ssn" required>
+        <label for="employee_first_name">Employee First Name:</label>
+        <input type = "text" name = "employee_first_name" id = "employee_first_name" required>
+        <label for="employee_middle_name">Employee Middle Name:</label>
+        <input type = "text" name = "employee_middle_name" id = "employee_middle_name">
+        <label for="employee_last_name">Employee Last Name:</label>
+        <input type = "text" name = "employee_last_name" id = "employee_last_name" required>
+        <label for="employee_street_number">Employee Street Number:</label>
+        <input type = "text" name = "employee_street_number" id = "employee_street_number" required>
+        <label for="employee_street_name">Employee Street Name:</label>
+        <input type = "text" name = "employee_street_name" id = "employee_street_name" required>
+        <label for="employee_city">Employee City:</label>
+        <input type = "text" name = "employee_city" id = "employee_city" required>
+        <label for="employee_stateProvince">Employee State/Province:</label>
+        <input type = "text" name = "employee_stateProvince" id = "employee_stateProvince" required>
+        <label for="employee_aptNumber">Employee Apartment Number:</label>
+        <input type = "text" name = "employee_aptNumber" id = "employee_aptNumber">
+        <label for="employee_zip">Employee Zip:</label>
+        <input type = "text" name = "employee_zip" id = "employee_zip" required>
+        <button type="submit">Insert Employee</button>
     </form>
 </div>
 
 <div class="container">
     <h2>Hotel</h2>
-    <form id="hotel-form">
-        <label for="hotel_name">Hotel Name:</label>
-        <input type="text" name="hotel_name" id="hotel_name" required>
-
-        <!-- Add other hotel-related fields here -->
-
+    <form id="hotel-form" action="insert-hotel-controller.jsp" method="POST">
+        <label for="hotel_street_number">Hotel Street Number: </label>
+        <input type="text" name="hotel_street_number" id="hotel_street_number" required>
+        <label for="hotel_street_name">Hotel Street Name: </label>
+        <input type="text" name="hotel_street_name" id="hotel_street_name" required>
+        <label for="hotel_city">Hotel City: </label>
+        <input type="text" name="hotel_city" id="hotel_city" required>
+        <label for="hotel_state_province">Hotel State/Province: </label>
+        <input type="text" name="hotel_state_province" id="hotel_state_province" required>
+        <label for="hotel_zip">Hotel Zip: </label>
+        <input type="text" name="hotel_zip" id="hotel_zip" required>
+        <label for="hotel_num_of_rooms">Hotel Number of Rooms: </label>
+        <input type="text" name="hotel_num_of_rooms" id="hotel_num_of_rooms" required>
+        <label for="hotel_contact_email">Hotel Contact Email: </label>
+        <input type="text" name="hotel_contact_email" id="hotel_contact_email" required>
+        <label for="hotel_category">Hotel Category: </label>
+        <input type="text" name="hotel_category" id="hotel_category" required>
+        <label for="hotel_chain">Hotel Chain: </label>
+        <input type="text" name="hotel_chain" id="hotel_chain" required>
         <button type="submit">Save</button>
     </form>
 </div>
