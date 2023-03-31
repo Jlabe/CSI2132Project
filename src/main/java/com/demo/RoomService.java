@@ -80,7 +80,7 @@ public class RoomService {
             stmt.setString(4,room.getStateProvince());
             stmt.setString(5,room.getZip());
             stmt.setInt(6, room.getRoom_number() );
-            stmt.setInt(7,room.getPrice());
+            stmt.setDouble(7,room.getPrice());
             stmt.setInt(8,room.getCapacity());
 
             if(room.getSeaMountainView().equals("YES")){
@@ -114,7 +114,7 @@ public class RoomService {
         String message = "";
 
         // sql query
-        String sql = "DELETE FROM room WHERE street_number = ? , street_name = ? , city = ? , stateProvince = ? , zip = ? , room_number = ? ;";
+        String sql = "DELETE FROM room WHERE street_number = ? AND street_name = ? AND city = ? AND state_province = ? AND zip = ? AND room_number = ?;";
 
         // database connection object
         ConnectionDB db = new ConnectionDB();
@@ -175,7 +175,7 @@ public class RoomService {
             stmt.setString(4, room.getStateProvince());
             stmt.setString(5,room.getZip());
             stmt.setInt(6, room.getRoom_number() );
-            stmt.setInt(7,room.getPrice());
+            stmt.setDouble(7,room.getPrice());
             stmt.setInt(8,room.getCapacity());
 
             if(room.getSeaMountainView().equals("YES")){
