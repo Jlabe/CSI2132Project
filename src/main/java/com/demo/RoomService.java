@@ -9,9 +9,7 @@ import java.util.List;
 public class RoomService {
 
     public List<Room> getRooms() throws Exception {
-        String sql = "SELECT room.*, room_renting.check_in_date, room_renting.check_out_date\n" +
-                "FROM room\n" +
-                "         LEFT JOIN room_renting ON room_renting.street_name = room.street_name AND room_renting.street_number = room.street_number AND room_renting.city = room.city AND room_renting.state_province = room.state_province AND room_renting.zip = room.zip AND room_renting.room_number = room.room_number ;\n";
+        String sql = "SELECT * FROM room";
 
         ConnectionDB db = new ConnectionDB();
 
@@ -40,10 +38,10 @@ public class RoomService {
                         rs.getInt("price"),
                         rs.getInt("capacity"),
                         seaMountainView,
-                        rs.getString("problems_damages")
+                        rs.getString("problems_damages"),
+                        rs.getDate("check_in_date"),
+                        rs.getDate("check_out_date")
                 );
-                room.setStart_date(rs.getString("check_in_date"));
-                room.setEnd_date(rs.getString("check_out_date"));
                 rooms.add(room);
             }
 
@@ -66,7 +64,7 @@ public class RoomService {
         ConnectionDB db = new ConnectionDB();
 
         // sql query
-        String insertRoomQuery = "INSERT INTO room (street_number,street_name, city, state_province,zip,room_number, price, capacity, seaMountainView, problems_damages) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        String insertRoomQuery = "INSERT INTO room (street_number,street_name, city, state_province,zip,room_number, price, capacity, seaMountainView, problems_damages, check_in_date, check_out_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         // try connect to database, catch any exceptions
         try {
@@ -93,6 +91,9 @@ public class RoomService {
             }
 
             stmt.setString(10, room.getProblemsDamages());
+            stmt.setDate(11,room.getCheck_in_date());
+            stmt.setDate(12,room.getCheck_out_date());
+
             // execute the query
             stmt.executeUpdate();
 
@@ -231,7 +232,9 @@ public class RoomService {
                         rs.getInt("price"),
                         rs.getInt("capacity"),
                         rs.getString("sea_mountain_view"),
-                        rs.getString("problems_damages")
+                        rs.getString("problems_damages"),
+                        rs.getDate("check_in_date"),
+                        rs.getDate("check_out_date")
                 );
                 return room;
             } else {

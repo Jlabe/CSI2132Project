@@ -15,6 +15,11 @@
     <servlet-class>com.demo.BookingServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>RentingServlet</servlet-name>
+    <servlet-class>com.demo.RentingServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>SearchRoomsServlet</servlet-name>
     <url-pattern>/searchRooms</url-pattern>
@@ -23,6 +28,11 @@
   <servlet-mapping>
     <servlet-name>BookingServlet</servlet-name>
     <url-pattern>/bookingServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>RentingServlet</servlet-name>
+    <url-pattern>/RentingServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>

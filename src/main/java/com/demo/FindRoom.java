@@ -77,10 +77,10 @@ public class FindRoom {
                         rs.getInt("price"),
                         rs.getInt("capacity"),
                         seaMountainView,
-                        rs.getString("problems_damages")
+                        rs.getString("problems_damages"),
+                        rs.getDate("check_in_date"),
+                        rs.getDate("check_out_date")
                 );
-                room.setStart_date(rs.getString("check_in_date"));
-                room.setEnd_date(rs.getString("check_out_date"));
                 rooms.add(room);
             }
 

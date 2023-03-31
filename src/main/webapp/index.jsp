@@ -173,10 +173,12 @@
                 <th>Capacity</th>
                 <th>Sea/Mountain View</th>
                 <th>Problems/Damage</th>
+                <th>Check In Date</th>
+                <th>Check Out Date</th>
             </tr>
             <% for (com.demo.Room room : roomsThatFitTheSearchCriteria) { %>
             <tr>
-                <td><a href="booking.jsp?street_number=<%= room.getStreet_number() %>&street_name=<%= room.getStreet_name() %>&city=<%= room.getCity() %>&stateProvince=<%= room.getStateProvince() %>&zip=<%= room.getZip() %>&room_number=<%= room.getRoom_number() %>&start_date=<%= (room.getStart_date() != null) ? room.getStart_date() : "" %>&end_date=<%= (room.getEnd_date() != null) ? room.getEnd_date() : "" %>">Book Room</a></td>
+                <td><a href="booking.jsp?street_number=<%= room.getStreet_number() %>&street_name=<%= room.getStreet_name() %>&city=<%= room.getCity() %>&stateProvince=<%= room.getStateProvince() %>&zip=<%= room.getZip() %>&room_number=<%= room.getRoom_number() %>&start_date=<%= room.getCheck_in_date() %>&end_date=<%= room.getCheck_out_date() %>">Book Room</a></td>
                 <td><%= room.getStreet_number() %></td>
                 <td><%= room.getStreet_name() %></td>
                 <td><%= room.getCity() %></td>
@@ -187,6 +189,8 @@
                 <td><%= room.getCapacity() %></td>
                 <td><%= room.getSeaMountainView() %></td>
                 <td><%= room.getProblemsDamages() %></td>
+                <td><%= room.getCheck_in_date() %></td>
+                <td><%= room.getCheck_out_date() %></td>
             </tr>
             <% } %>
 

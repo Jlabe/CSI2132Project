@@ -1,3 +1,8 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.demo.RoomBooking" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.demo.RoomRentingService" %>
+<%@ page import="com.demo.RoomRenting" %>
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="navbar.jsp" />
@@ -66,6 +71,15 @@
             background-color: #0056b3;
         }
     </style>
+
+    <%
+        com.demo.RoomBookingService roomBookingService = new com.demo.RoomBookingService();
+        List<RoomBooking> roomBookingList = new ArrayList<>();
+
+        roomBookingList = roomBookingService.getRoomBookings();
+
+    %>
+
 </head>
 <body>
 <h1>Employee entry</h1>
@@ -74,19 +88,30 @@
     <div class="left">
         <h2>Bookings</h2>
         <ul class="booking-list">
-            <!-- Replace these static booking items with dynamic content fetched from your server -->
+            <% for (RoomBooking roomBooking : roomBookingList) { %>
             <li class="booking-item">
-                Booking 1
-                <button>Edit</button>
+                <%= roomBooking.getStreet_name() %>,
+                <%= roomBooking.getCity() %>,
+                <%= roomBooking.getState_province() %>,
+                <%= roomBooking.getZip() %>,
+                Room: <%= roomBooking.getRoom_number() %>,
+                Check-in: <%= roomBooking.getCheck_in_date() %>,
+                Check-out: <%= roomBooking.getCheck_out_date() %>
+                <form method="POST" action="RentingServlet" class="renting-form">
+                    <input type="hidden" name="street_number" value="<%= roomBooking.getStreet_number() %>">
+                    <input type="hidden" name="street_name" value="<%= roomBooking.getStreet_name() %>">
+                    <input type="hidden" name="city" value="<%= roomBooking.getCity() %>">
+                    <input type="hidden" name="state_province" value="<%= roomBooking.getState_province() %>">
+                    <input type="hidden" name="zip" value="<%= roomBooking.getZip() %>">
+                    <input type="hidden" name="room_number" value="<%= roomBooking.getRoom_number() %>">
+                    <input type="hidden" name="check_in_date" value="<%= roomBooking.getCheck_in_date() %>">
+                    <input type="hidden" name="check_out_date" value="<%= roomBooking.getCheck_out_date() %>">
+                    <input type="hidden" name="ssn" value="<%= roomBooking.getSsn() %>">
+                    <button type="submit" class="edit-button">Edit</button>
+                </form>
+
             </li>
-            <li class="booking-item">
-                Booking 2
-                <button>Edit</button>
-            </li>
-            <li class="booking-item">
-                Booking 3
-                <button>Edit</button>
-            </li>
+            <% } %>
         </ul>
     </div>
 
