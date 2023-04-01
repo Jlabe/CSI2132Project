@@ -9,7 +9,7 @@ import java.util.List;
 
 public class EmployeeService {
 
-    public List<Employee> getEmployee() throws Exception {
+    public List<Employee> getEmployees() throws Exception {
         String sql = "SELECT * FROM Employee";
 
         ConnectionDB db = new ConnectionDB();

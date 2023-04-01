@@ -137,7 +137,7 @@ public class HotelService {
         String message = "";
 
         // sql query
-        String sql = "UPDATE Hotel SET chain_name = ? , street_number = ? , street_name = ? , city = ?, state_province = ? , zip = ? , num_of_rooms = ? ,contact_email = ?,category = ? WHERE street_number = ? , street_name = ? , city = ?, stateProvince = ? , zip = ?;";
+        String sql = "UPDATE Hotel SET street_number = ?, street_name = ?, city = ?, state_province = ?, zip = ?, num_of_rooms = ?, contact_email = ?, category = ?, chain_name = ? WHERE street_number = ? AND street_name = ? AND city = ? AND state_province = ? AND zip = ?;";
 
         // connection object
         ConnectionDB db = new ConnectionDB();
@@ -159,6 +159,13 @@ public class HotelService {
             stmt.setInt(6, hotel.getNum_of_rooms());
             stmt.setString(7, hotel.getContact_email());
             stmt.setString(8, hotel.getCategory());
+            stmt.setString(9, hotel.getChain_name());
+
+            stmt.setInt(10, hotel.getStreet_number());
+            stmt.setString(11, hotel.getStreet_name());
+            stmt.setString(12, hotel.getCity());
+            stmt.setString(13, hotel.getStateProvince());
+            stmt.setString(14, hotel.getZip());
 
             // execute the query
             stmt.executeUpdate();
@@ -170,10 +177,49 @@ public class HotelService {
             db.close();
         }
 
-        // return respective message
         return message;
     }
 
 
+    public Hotel getHotelByUniqueId(int street_number, String street_name, String city, String stateProvince, String zip) throws Exception {
 
+        String sql = "SELECT * FROM hotel WHERE street_number = ? AND street_name = ? AND city = ? AND state_province = ? AND zip = ?;";
+
+        ConnectionDB db = new ConnectionDB();
+
+        try (Connection con = db.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setInt(1, street_number);
+            stmt.setString(2, street_name);
+            stmt.setString(3, city);
+            stmt.setString(4, stateProvince);
+            stmt.setString(5, zip);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Hotel hotel = new Hotel(
+                        rs.getString("chain_name"),
+                        rs.getInt("street_number"),
+                        rs.getString("street_name"),
+                        rs.getString("city"),
+                        rs.getString("state_province"),
+                        rs.getString("zip"),
+                        rs.getInt("num_of_rooms"),
+                        rs.getString("contact_email"),
+                        rs.getString("category")
+
+                );
+                return hotel;
+            } else {
+                throw new Exception("Hotel not found");
+            }
+        } catch (Exception e) {
+            // throw any errors occurred
+            throw new Exception(e.getMessage());
+        } finally {
+            db.close();
+        }
+    }
 }

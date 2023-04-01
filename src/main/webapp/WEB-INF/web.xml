@@ -61,6 +61,16 @@
     <servlet-class>com.demo.UpdateCustomerServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>EditHotelServlet</servlet-name>
+    <servlet-class>com.demo.EditHotelServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>UpdateHotelServlet</servlet-name>
+    <servlet-class>com.demo.UpdateHotelServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>SearchRoomsServlet</servlet-name>
     <url-pattern>/searchRooms</url-pattern>
@@ -118,5 +128,15 @@
     <url-pattern>/UpdateCustomerServlet</url-pattern>
 
   </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditHotelServlet</servlet-name>
+    <url-pattern>/EditHotelServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>UpdateHotelServlet</servlet-name>
+    <url-pattern>/UpdateHotelServlet</url-pattern>
+  </servlet-mapping>
+
 
 </web-app>

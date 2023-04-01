@@ -27,5 +27,4 @@ public class EditCustomerServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-
 }

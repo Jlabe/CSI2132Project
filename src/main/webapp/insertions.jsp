@@ -75,7 +75,7 @@
     CustomerService customerService = new CustomerService();
     List<Customer> customers = null;
     try {
-        customers = customerService.getCustomer();
+        customers = customerService.getCustomers();
     } catch (Exception e) {
         e.printStackTrace();
     }
@@ -83,7 +83,7 @@
     EmployeeService employeeService = new EmployeeService();
     List<Employee> employees = null;
     try {
-        employees = employeeService.getEmployee();
+        employees = employeeService.getEmployees();
     } catch (Exception e) {
         e.printStackTrace();
     }
@@ -279,7 +279,7 @@
         <input type="text" name="hotel_category" id="hotel_category" required>
         <label for="hotel_chain">Hotel Chain: </label>
         <input type="text" name="hotel_chain" id="hotel_chain" required>
-        <button type="submit">Save</button>
+        <button type="submit">Insert Hotel</button>
     </form>
 </div>
 
@@ -320,7 +320,16 @@
                         <button type="submit" class="btn btn-danger">DELETE</button>
                     </form>
                 </td>
-                <td><a href="">EDIT</a></td>
+
+                <td><form action="EditHotelServlet" method="POST">
+                    <input type="hidden" name="hotel_street_number" value="<%= hotel.getStreet_number() %>">
+                    <input type="hidden" name="hotel_street_name" value="<%= hotel.getStreet_name() %>">
+                    <input type="hidden" name="hotel_city" value="<%= hotel.getCity() %>">
+                    <input type="hidden" name="hotel_state_province" value="<%= hotel.getStateProvince() %>">
+                    <input type="hidden" name="hotel_zip" value="<%= hotel.getZip() %>">
+                    <input type="hidden" name="hotel_chain_name" value="<%= hotel.getChain_name() %>">
+                    <button type="submit" class="btn btn-danger">EDIT</button>
+                </form></td>
                 <td><%= hotel.getStreet_number() %></td>
                 <td><%= hotel.getStreet_name() %></td>
                 <td><%= hotel.getCity() %></td>
@@ -365,7 +374,7 @@
         <input type="text" name="room_check_in_date" id= "room_check_in_date" required>
         <label for = "room_check_out_date"> Check out date: </label>
         <input type="text" name="room_check_out_date" id= "room_check_out_date" required>
-        <button type="submit">Save</button>
+        <button type="submit">Insert Room</button>
     </form>
 </div>
 

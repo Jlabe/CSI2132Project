@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CustomerService {
 
-    public List<Customer> getCustomer() throws Exception {
+    public List<Customer> getCustomers() throws Exception {
         String sql = "SELECT * FROM Customer";
 
         ConnectionDB db = new ConnectionDB();

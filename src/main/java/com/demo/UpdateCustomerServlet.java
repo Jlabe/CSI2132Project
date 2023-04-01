@@ -42,7 +42,7 @@ public class UpdateCustomerServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
-        response.sendRedirect("customer_list.jsp");
+        response.sendRedirect("insertions.jsp");
     }
 
 }
