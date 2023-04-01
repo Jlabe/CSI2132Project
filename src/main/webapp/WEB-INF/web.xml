@@ -20,6 +20,36 @@
     <servlet-class>com.demo.RentingServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>DeleteEmployeeServlet</servlet-name>
+    <servlet-class>com.demo.DeleteEmployeeServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>DeleteHotelServlet</servlet-name>
+    <servlet-class>com.demo.DeleteHotelServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>DeleteCustomerServlet</servlet-name>
+    <servlet-class>com.demo.DeleteCustomerServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>DeleteRoomServlet</servlet-name>
+    <servlet-class>com.demo.DeleteRoomServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>InsertRoomServlet</servlet-name>
+    <servlet-class>com.demo.InsertRoomServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>InsertHotelServlet</servlet-name>
+    <servlet-class>com.demo.InsertHotelServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>SearchRoomsServlet</servlet-name>
     <url-pattern>/searchRooms</url-pattern>
@@ -33,6 +63,36 @@
   <servlet-mapping>
     <servlet-name>RentingServlet</servlet-name>
     <url-pattern>/RentingServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>DeleteEmployeeServlet</servlet-name>
+    <url-pattern>/DeleteEmployeeServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>DeleteHotelServlet</servlet-name>
+    <url-pattern>/DeleteHotelServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>DeleteCustomerServlet</servlet-name>
+    <url-pattern>/DeleteCustomerServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>DeleteRoomServlet</servlet-name>
+    <url-pattern>/DeleteRoomServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>InsertRoomServlet</servlet-name>
+    <url-pattern>/InsertRoomServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>InsertHotelServlet</servlet-name>
+    <url-pattern>/InsertHotelServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>

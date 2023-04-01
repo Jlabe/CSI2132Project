@@ -57,7 +57,7 @@ public class HotelService {
         ConnectionDB db = new ConnectionDB();
 
         // sql query
-        String insertHotelQuery = "INSERT INTO hotel (chain_name,street_number, street_name, city, stateProvince,zip,num_of_rooms,contact_email,category) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?);";
+        String insertHotelQuery = "INSERT INTO hotel (chain_name,street_number, street_name, city, state_province,zip,num_of_rooms,contact_email,category) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?);";
 
         // try to connect to database, catch any exceptions
         try {
@@ -99,7 +99,7 @@ public class HotelService {
         String message = "";
 
         // sql query
-        String sql = "DELETE FROM hotel WHERE street_number = ? , street_name = ? , city = ? , stateProvince = ? , zip = ?;";
+        String sql = "DELETE FROM hotel WHERE street_number = ? AND street_name = ? AND city = ? AND state_province = ? AND zip = ?;";
 
         // database connection object
         ConnectionDB db = new ConnectionDB();

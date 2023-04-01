@@ -24,8 +24,6 @@
   String hotel_category = request.getParameter("hotel_category");
   String hotel_chain = request.getParameter("hotel_chain");
 
-  System.out.println("LOLLLLL! Submit works!");
-
   HotelService hotelService = new HotelService();
   // create student object
   Hotel hotel  = new Hotel(hotel_chain,hotel_street_number, hotel_street_name,hotel_city, hotel_state_province, hotel_zip, hotel_num_of_rooms, hotel_contact_email, hotel_category);
@@ -52,3 +50,4 @@
   // redirect to index
   response.sendRedirect("employeeEntry.jsp");
 %>
+

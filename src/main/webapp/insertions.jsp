@@ -1,11 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <%@ page import="java.util.List" %>
-<%@ page import="com.demo.RoomService" %>
-<%@ page import="com.demo.Room" %>
-<%@ page import="com.demo.Message" %>
 <%@ page import="java.util.ArrayList" %>
-
+<%@ page import="com.demo.*" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +12,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -28,46 +27,68 @@
             margin-bottom: 30px;
         }
         .container {
-            max-width: 600px;
+            max-width: 900px;
             margin: 50px auto;
             background-color: #fff;
             padding: 30px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
         }
-        label {
-            display: block;
-            margin-top: 15px;
-            font-weight: bold;
-        }
-        input[type="text"], input[type="number"], input[type="date"], select
-        {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        button {
-            display: inline-block;
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            margin-top: 15px;
-            text-transform: uppercase;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-        form {
-            margin-bottom: 30px;
+        .table-responsive {
+            max-height: 400px; /* Adjust the max-height according to your preference */
+            overflow-y: auto;
         }
     </style>
-
 </head>
+
 <body>
+
+<%
+    ArrayList<Message> messages;
+
+    if ((ArrayList<Message>) session.getAttribute("messages") == null) messages = new ArrayList<>();
+    else messages = (ArrayList<Message>) session.getAttribute("messages");
+
+    String msgField = "";
+    for (Message m : messages) {
+        msgField += "{\"type\":\"" + m.type + "\",\"value\":\"" + m.value.replaceAll("['\"]+", "") + "\"},";
+    }
+
+    session.setAttribute("messages", new ArrayList<Message>());
+
+    RoomService roomService = new RoomService();
+    List<Room> rooms = null;
+    try {
+        rooms = roomService.getRooms();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    HotelService hotelService = new HotelService();
+    List<Hotel> hotels = null;
+    try {
+        hotels = hotelService.getHotels();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    CustomerService customerService = new CustomerService();
+    List<Customer> customers = null;
+    try {
+        customers = customerService.getCustomer();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+
+    EmployeeService employeeService = new EmployeeService();
+    List<Employee> employees = null;
+    try {
+        employees = employeeService.getEmployee();
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+%>
+
 <h1>Hotel Management Insertions</h1>
 <div class="container">
     <h2>Customer</h2>
@@ -100,6 +121,59 @@
 </div>
 
 <div class="container">
+    <!-- Add table to display Room data -->
+    <% if (customers.size() == 0) { %>
+    <h1 style="margin-top: 5rem;">No Rooms found!</h1>
+    <% } else { %>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>SSN</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Street Number</th>
+                <th>Street Name</th>
+                <th>Apartment Number</th>
+                <th>City</th>
+                <th>State/Province</th>
+                <th>Zip</th>
+                <th>Registration Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+                for (Customer customer : customers) { %>
+            <tr>
+                <td>
+                    <form action="DeleteCustomerServlet" method="POST">
+                        <input type="hidden" name="ssn" value="<%= customer.getSSN() %>">
+                        <button type="submit" class="btn btn-danger">DELETE</button>
+                    </form>
+                </td>
+                <td><a href="">EDIT</a></td>
+                <td><%= customer.getSSN() %></td>
+                <td><%= customer.getFirst_name() %></td>
+                <td><%= customer.getMiddle_name() %></td>
+                <td><%= customer.getLast_name() %></td>
+                <td><%= customer.getStreet_number() %></td>
+                <td><%= customer.getStreet_name() %></td>
+                <td><%= customer.getCity() %></td>
+                <td><%= customer.getStateProvince() %></td>
+                <td><%= customer.getZip() %></td>
+                <td><%= customer.getRegistration_date() %></td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+    <% } %>
+</div>
+
+<div class="container">
     <h2>Employee</h2>
     <form id="employee-form" action="insert-employee-controller.jsp" method="POST">
         <label for="employee_ssn">Employee SSN/SIN:</label>
@@ -129,8 +203,61 @@
 </div>
 
 <div class="container">
+    <!-- Add table to display Room data -->
+    <% if (employees.size() == 0) { %>
+    <h1 style="margin-top: 5rem;">No Rooms found!</h1>
+    <% } else { %>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Worker SSN</th>
+                <th>Manager SSN</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Street Number</th>
+                <th>Street Name</th>
+                <th>Apartment Number</th>
+                <th>City</th>
+                <th>State/Province</th>
+                <th>Zip</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+                for (Employee employee : employees) { %>
+            <tr>
+                <td>
+                    <form action="DeleteEmployeeServlet" method="POST">
+                        <input type="hidden" name="worker_ssn" value="<%= employee.getWorker_ssn() %>">
+                        <button type="submit" class="btn btn-danger">DELETE</button>
+                    </form>
+                </td>
+                <td><a href="">EDIT</a></td>
+                <td><%= employee.getWorker_ssn() %></td>
+                <td><%= employee.getManager_ssn() %></td>
+                <td><%= employee.getFirst_name() %></td>
+                <td><%= employee.getMiddle_name() %></td>
+                <td><%= employee.getLast_name() %></td>
+                <td><%= employee.getStreet_number() %></td>
+                <td><%= employee.getStreet_name() %></td>
+                <td><%= employee.getCity() %></td>
+                <td><%= employee.getStateProvince() %></td>
+                <td><%= employee.getZip() %></td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+    <% } %>
+</div>
+
+<div class="container">
     <h2>Hotel</h2>
-    <form id="hotel-form" action="insert-hotel-controller.jsp" method="POST">
+    <form id="hotel-form" action="InsertHotelServlet" method="POST">
         <label for="hotel_street_number">Hotel Street Number: </label>
         <input type="text" name="hotel_street_number" id="hotel_street_number" required>
         <label for="hotel_street_name">Hotel Street Name: </label>
@@ -154,8 +281,63 @@
 </div>
 
 <div class="container">
+    <!-- Add table to display Room data -->
+    <% if (hotels.size() == 0) { %>
+    <h1 style="margin-top: 5rem;">No Rooms found!</h1>
+    <% } else { %>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Street Number</th>
+                <th>Street Name</th>
+                <th>City</th>
+                <th>State/Province</th>
+                <th>Zip</th>
+                <th>Number Of Rooms</th>
+                <th>Contact Email</th>
+                <th>Category</th>
+                <th>Chain Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+                for (Hotel hotel : hotels) { %>
+            <tr>
+                <td>
+                    <form action="DeleteHotelServlet" method="POST">
+                        <input type="hidden" name="street_number" value="<%= hotel.getStreet_number() %>">
+                        <input type="hidden" name="street_name" value="<%= hotel.getStreet_name() %>">
+                        <input type="hidden" name="city" value="<%= hotel.getCity() %>">
+                        <input type="hidden" name="state_province" value="<%= hotel.getStateProvince() %>">
+                        <input type="hidden" name="zip" value="<%= hotel.getZip() %>">
+                        <input type="hidden" name="chain_name" value="<%= hotel.getChain_name() %>">
+                        <button type="submit" class="btn btn-danger">DELETE</button>
+                    </form>
+                </td>
+                <td><a href="">EDIT</a></td>
+                <td><%= hotel.getStreet_number() %></td>
+                <td><%= hotel.getStreet_name() %></td>
+                <td><%= hotel.getCity() %></td>
+                <td><%= hotel.getStateProvince() %></td>
+                <td><%= hotel.getZip() %></td>
+                <td><%= hotel.getNum_of_rooms() %></td>
+                <td><%= hotel.getContact_email() %></td>
+                <td><%= hotel.getCategory() %></td>
+                <td><%= hotel.getChain_name() %></td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+    <% } %>
+</div>
+
+<div class="container">
     <h2>Room</h2>
-    <form id="room-form" action="insert-room-controller.jsp" method="POST">
+    <form id="room-form" action="InsertRoomServlet" method="POST">
         <label for="room_street_number">Room Street Number:</label>
         <input type="number" name="room_street_number" id="room_street_number" required>
         <label for="room_street_name">Room Street Name: </label>
@@ -184,11 +366,120 @@
     </form>
 </div>
 
+<div class="container">
+    <!-- Add table to display Room data -->
+    <% if (rooms.size() == 0) { %>
+    <h1 style="margin-top: 5rem;">No Rooms found!</h1>
+    <% } else { %>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Street Number</th>
+                <th>Street Name</th>
+                <th>City</th>
+                <th>State/Province</th>
+                <th>Zip</th>
+                <th>Room Number</th>
+                <th>Price</th>
+                <th>Capacity</th>
+                <th>Sea/Mountainview</th>
+                <th>Problems/Damages</th>
+                <th>Check In Date</th>
+                <th>Check Out Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+                for (Room room : rooms) { %>
+            <tr>
+                <td><form action="DeleteRoomServlet" method="POST">
+                    <input type="hidden" name="street_number" value="<%= room.getStreet_number() %>">
+                    <input type="hidden" name="street_name" value="<%= room.getStreet_name() %>">
+                    <input type="hidden" name="city" value="<%= room.getCity() %>">
+                    <input type="hidden" name="state_province" value="<%= room.getStateProvince() %>">
+                    <input type="hidden" name="zip" value="<%= room.getZip() %>">
+                    <input type="hidden" name="room_number" value="<%= room.getRoom_number() %>">
+                    <button type="submit" class="btn btn-danger">DELETE</button>
+                </form>
+                </td>
+                <td><a href="">EDIT</a></td>
+                <td><%= room.getStreet_number() %></td>
+                <td><%= room.getStreet_name() %></td>
+                <td><%= room.getCity() %></td>
+                <td><%= room.getStateProvince() %></td>
+                <td><%= room.getZip() %></td>
+                <td><%= room.getRoom_number() %></td>
+                <td><%= room.getPrice() %></td>
+                <td><%= room.getCapacity() %></td>
+                <td><%= room.getSeaMountainView() %></td>
+                <td><%= room.getProblemsDamages() %></td>
+                <td><%= room.getCheck_in_date() %></td>
+                <td><%= room.getCheck_out_date() %></td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+    <% } %>
+</div>
+
 <script>
     // Add JavaScript code to handle form submission, delete and update operations.
     // You may use AJAX to interact with the server and update the page without refreshing.
+
+    // Function to load data into tables
+    function loadData() {
+        // Load data for each entity using AJAX and populate their respective tables
+        // Example for customer:
+        $.ajax({
+            url: "customer_controller.jsp",
+            type: "GET",
+            data: { action: "fetchAll" },
+            dataType: "json",
+            success: function(data) {
+                // Populate customer table
+                // Clear the table before adding new data
+                $("#customer-table tbody").empty();
+                for (var i = 0; i < data.length; i++) {
+                    var customer = data[i];
+                    var row = "<tr><td>" + customer.ssn + "</td><td>" + customer.firstName + "</td><td>" + customer.middleName + "</td><td>" + customer.lastName + "</td><td>" + customer.streetNumber + "</td><td>" + customer.streetName + "</td><td>" + customer.city + "</td><td>" + customer.stateProvince + "</td><td>" + customer.aptNumber + "</td><td>" + customer.zip + "</td><td>" + customer.registrationDate + "</td></tr>";
+                    $("#customer-table tbody").append(row);
+                }
+            },
+            error: function() {
+                alert("Error fetching customer data");
+            }
+        });
+
+        // Repeat the above steps for Employee, Hotel, and Room tables
+    }
+
+    // Call loadData on page load
+    loadData();
+
+    // Handle form submission using AJAX
+    $("#customer-form").submit(function(event) {
+        event.preventDefault();
+        // Serialize form data
+        var formData = $(this).serialize();
+        $.ajax({
+            url: "customer_controller.jsp",
+            type: "POST",
+            data: formData,
+            success: function() {
+                loadData();
+            },
+            error: function() {
+                alert("Error submitting customer data");
+            }
+        });
+    });
+
+    // Add similar event handlers for Employee, Hotel, and Room forms
+
 </script>
 </body>
 </html>
-
-
