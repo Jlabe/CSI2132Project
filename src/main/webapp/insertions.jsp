@@ -392,6 +392,7 @@
             <tr>
                 <th></th>
                 <th></th>
+                <th></th>
                 <th>Street Number</th>
                 <th>Street Name</th>
                 <th>City</th>

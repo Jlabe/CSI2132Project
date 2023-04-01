@@ -57,8 +57,8 @@
     String stateProvince = request.getParameter("stateProvince");
     String zip = request.getParameter("zip");
     String room_number = request.getParameter("room_number");
-    String start_date = request.getParameter("start_date");
-    String end_date = request.getParameter("end_date");
+    String start_date = request.getParameter("check_in_date");
+    String end_date = request.getParameter("check_out_date");
 
     com.demo.RoomService roomService = new com.demo.RoomService();
     com.demo.Room room = null;

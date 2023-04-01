@@ -178,7 +178,7 @@
             </tr>
             <% for (com.demo.Room room : roomsThatFitTheSearchCriteria) { %>
             <tr>
-                <td><a href="booking.jsp?street_number=<%= room.getStreet_number() %>&street_name=<%= room.getStreet_name() %>&city=<%= room.getCity() %>&stateProvince=<%= room.getStateProvince() %>&zip=<%= room.getZip() %>&room_number=<%= room.getRoom_number() %>&start_date=<%= room.getCheck_in_date() %>&end_date=<%= room.getCheck_out_date() %>">Book Room</a></td>
+                <td><a href="booking.jsp?street_number=<%= room.getStreet_number() %>&street_name=<%= room.getStreet_name() %>&city=<%= room.getCity() %>&stateProvince=<%= room.getStateProvince() %>&zip=<%= room.getZip() %>&room_number=<%= room.getRoom_number() %>&check_in_date=<%= room.getCheck_in_date() %>&check_out_date=<%= room.getCheck_out_date() %>">Book Room</a></td>
                 <td><%= room.getStreet_number() %></td>
                 <td><%= room.getStreet_name() %></td>
                 <td><%= room.getCity() %></td>

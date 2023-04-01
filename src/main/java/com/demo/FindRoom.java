@@ -27,15 +27,16 @@ public class FindRoom {
         double roomPriceValue = Double.parseDouble(formData.get(7));
 
         String sql = "SELECT *\n" +
-                "FROM room, hotel, room_renting\n" +
+                "FROM room, hotel \n" +
                 "WHERE check_in_date = ?" +
                 "  AND check_out_date = ?" +
-                "  AND CAST(capacity AS INTEGER) = ?" +
+                "  AND CAST(room.capacity AS INTEGER) = ?" +
                 "  AND room.city = ?" +
-                "  AND chain_name = ?" +
-                "  AND category = ?" +
-                "  AND CAST(num_of_rooms AS INTEGER) = ?" +
-                "  AND CAST(price AS INTEGER) <= ?;";
+                "  AND hotel.chain_name = ?" +
+                "  AND hotel.category = ?" +
+                "  AND CAST(hotel.num_of_rooms AS INTEGER) = ?" +
+                "  AND CAST(room.price AS INTEGER) <= ?;";
+
 
         ConnectionDB db = new ConnectionDB();
 
