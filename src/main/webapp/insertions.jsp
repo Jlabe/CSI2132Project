@@ -239,7 +239,10 @@
                         <button type="submit" class="btn btn-danger">DELETE</button>
                     </form>
                 </td>
-                <td><a href="">EDIT</a></td>
+                <td><form action="EditEmployeeServlet" method="POST">
+                    <input type="hidden" name="worker_ssn" value="<%= employee.getWorker_ssn() %>">
+                    <button type="submit" class="btn btn-primary">EDIT</button>
+                </form></td>
                 <td><%= employee.getWorker_ssn() %></td>
                 <td><%= employee.getManager_ssn() %></td>
                 <td><%= employee.getFirst_name() %></td>
@@ -417,7 +420,19 @@
                     <button type="submit" class="btn btn-danger">DELETE</button>
                 </form>
                 </td>
-                <td><a href="">EDIT</a></td>
+                <td>
+                <td>
+                    <form action="EditRoomServlet" method="POST">
+                        <input type="hidden" name="street_number" value="<%= room.getStreet_number() %>">
+                        <input type="hidden" name="street_name" value="<%= room.getStreet_name() %>">
+                        <input type="hidden" name="city" value="<%= room.getCity() %>">
+                        <input type="hidden" name="state_province" value="<%= room.getStateProvince() %>">
+                        <input type="hidden" name="zip" value="<%= room.getZip() %>">
+                        <input type="hidden" name="room_number" value="<%= room.getRoom_number() %>">
+                        <button type="submit" class="btn btn-primary">EDIT</button>
+                    </form>
+                </td>
+                </td>
                 <td><%= room.getStreet_number() %></td>
                 <td><%= room.getStreet_name() %></td>
                 <td><%= room.getCity() %></td>

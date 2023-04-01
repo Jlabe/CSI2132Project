@@ -155,7 +155,7 @@ public class RoomService {
         String message = "";
 
         // sql query
-        String sql = "UPDATE room SET street_number = ? , street_name = ? , city = ? , stateProvince = ? , zip = ? , room_number = ?, price = ? , capacity = ? , seaMountainView = ? , problemsDamages = ? WHERE street_number = ? , street_name = ? , city = ? , stateProvince = ? , zip = ? , room_number = ?;";
+        String sql = "UPDATE room SET street_number = ?, street_name = ?, city = ?, state_province = ?, zip = ?, room_number = ?, price = ?, capacity = ?, sea_mountain_view = ?, problems_damages = ?, check_in_date = ?, check_out_date = ? WHERE street_number = ? AND street_name = ? AND city = ? AND state_province = ? AND zip = ? AND room_number = ?;";
 
         // connection object
         ConnectionDB db = new ConnectionDB();
@@ -173,24 +173,30 @@ public class RoomService {
             stmt.setString(2, room.getStreet_name());
             stmt.setString(3, room.getCity());
             stmt.setString(4, room.getStateProvince());
-            stmt.setString(5,room.getZip());
-            stmt.setInt(6, room.getRoom_number() );
-            stmt.setDouble(7,room.getPrice());
-            stmt.setInt(8,room.getCapacity());
+            stmt.setString(5, room.getZip());
+            stmt.setInt(6, room.getRoom_number());
+            stmt.setDouble(7, room.getPrice());
+            stmt.setInt(8, room.getCapacity());
 
-
-            if(room.getSeaMountainView().equals("YES")){
-                stmt.setBoolean(9,true);
-            }
-            else{
-                stmt.setBoolean(9,false);
+            String seaMountainView = room.getSeaMountainView();
+            if (seaMountainView != null && seaMountainView.equals("YES")) {
+                stmt.setBoolean(9, true);
+            } else {
+                stmt.setBoolean(9, false);
             }
 
             stmt.setString(10, room.getProblemsDamages());
+            stmt.setDate(11, room.getCheck_in_date());
+            stmt.setDate(12, room.getCheck_out_date());
+            stmt.setInt(13, room.getStreet_number());
+            stmt.setString(14, room.getStreet_name());
+            stmt.setString(15, room.getCity());
+            stmt.setString(16, room.getStateProvince());
+            stmt.setString(17, room.getZip());
+            stmt.setInt(18, room.getRoom_number());
 
             // execute the query
             stmt.executeUpdate();
-
 
         } catch (Exception e) {
             message = "Error while updating room: " + e.getMessage();

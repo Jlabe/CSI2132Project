@@ -130,12 +130,12 @@ public class EmployeeService {
         return message;
     }
 
-    public String updateCustomer(Employee employee) throws Exception {
+    public String updateEmployee(Employee employee) throws Exception {
         Connection con = null;
         String message = "";
 
         // sql query
-        String sql = "UPDATE Customer SET worker_ssn = ?, employee_ssn = ?, first_name = ?, middle_name = ?, last_name = ?, street_number = ?,street_name = ?, apt_number = ?, state_province = ? ,zip = ? WHERE worker_ssn = ?;";
+        String sql = "UPDATE employee SET worker_ssn = ?, manager_ssn = ?, first_name = ?, middle_name = ?, last_name = ?, street_number = ?,street_name = ?, apt_number = ?, city = ?,  state_province = ? ,zip = ? WHERE worker_ssn = ?;";
 
         // connection object
         ConnectionDB db = new ConnectionDB();
@@ -161,6 +161,8 @@ public class EmployeeService {
             stmt.setString(10, employee.getStateProvince());
             stmt.setString(11, employee.getZip());
 
+            stmt.setString(12, employee.getWorker_ssn());
+
             // execute the query
             stmt.executeUpdate();
 
@@ -173,6 +175,45 @@ public class EmployeeService {
 
         // return respective message
         return message;
+    }
+
+    public Employee getEmployeeByUniqueId(String worker_ssn) throws Exception {
+
+        String sql = "SELECT * FROM employee WHERE worker_ssn = ?";
+
+        ConnectionDB db = new ConnectionDB();
+
+        try (Connection con = db.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setString(1, worker_ssn);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Employee employee = new Employee(
+                        rs.getString("worker_ssn"),
+                        rs.getString("manager_ssn"),
+                        rs.getString("first_name"),
+                        rs.getString("middle_name"),
+                        rs.getString("last_name"),
+                        rs.getInt("street_number"),
+                        rs.getString("street_name"),
+                        rs.getInt("apt_number"),
+                        rs.getString("city"),
+                        rs.getString("state_province"),
+                        rs.getString("zip")
+                );
+                return employee;
+            } else {
+                throw new Exception("Room not found");
+            }
+        } catch (Exception e) {
+            // throw any errors occurred
+            throw new Exception(e.getMessage());
+        } finally {
+            db.close();
+        }
     }
 
 }

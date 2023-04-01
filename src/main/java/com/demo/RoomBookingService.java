@@ -1,6 +1,7 @@
 package com.demo;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -94,4 +95,44 @@ public class RoomBookingService {
         // return respective message
         return message;
     }
+
+    public String deleteRoomBooking(int street_number, String street_name, String city, String stateProvince, String zip, int room_number, Date bookingDate) throws Exception {
+        Connection con = null;
+        String message = "";
+
+        // sql query
+        String sql = "DELETE FROM room_booking WHERE street_number = ? AND street_name = ? AND city = ? AND state_province = ? AND zip = ? AND room_number = ? AND booking_date = ?;";
+
+        // database connection object
+        ConnectionDB db = new ConnectionDB();
+
+        // try connect to database, catch any exceptions
+        try {
+            con = db.getConnection();
+
+            // prepare statement
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            // set every ? of statement
+            stmt.setInt(1, street_number);
+            stmt.setString(2, street_name);
+            stmt.setString(3, city);
+            stmt.setString(4, stateProvince);
+            stmt.setString(5, zip);
+            stmt.setInt(6, room_number);
+            stmt.setDate(7, bookingDate);
+
+            // execute the query
+            stmt.executeUpdate();
+
+        } catch (Exception e) {
+            message = "Error while deleting room booking: " + e.getMessage();
+        } finally {
+
+            db.close();
+        }
+
+        return message;
+    }
+
 }
