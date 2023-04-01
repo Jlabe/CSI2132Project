@@ -11,16 +11,17 @@
   <h1>Edit Room</h1>
   <form action="UpdateRoomServlet" method="POST">
     <% Room room = (Room) request.getAttribute("room"); %>
-    <input type="number" name="street_number" value="<%= room.getStreet_number() %>">
     <label for="street_number">Street Number:</label>
-    <input type="text" name="street_name" value="<%= room.getStreet_name() %>">
+    <input type="number" name="street_number" value="<%= room.getStreet_number() %>">
     <label for="street_name">Street Name:</label>
+    <input type="text" name="street_name" value="<%= room.getStreet_name() %>">
+    <label for="street_name">City:</label>
     <input type="text" name="city" value="<%= room.getCity() %>">
-    <label for="city">City:</label>
-    <input type="text" name="state_province" value="<%= room.getStateProvince() %>">
     <label for="state_province">State/Province:</label>
-    <input type="text" name="zip" value="<%= room.getZip() %>">
+    <input type="text" name="state_province" value="<%= room.getStateProvince() %>">
     <label for="zip">Zip:</label>
+    <input type="text" name="zip" value="<%= room.getZip() %>">
+    <label for="room_number">Room Number:</label>
     <input type="number" name="room_number" value="<%= room.getRoom_number() %>">
     <label for="price">Price:</label>
     <input type="number" name="price" value="<%= room.getPrice() %>" required><br>

@@ -97,7 +97,16 @@ public class Room {
     }
 
     public String getSeaMountainView() {
-        return seaMountainView;
+        if (seaMountainView.equals("f")){
+            return "NO";
+        }
+        else if(seaMountainView.equals("t")){
+            return "YES";
+        }
+        else{
+            return seaMountainView;
+        }
+
     }
 
     public void setSeaMountainView(String seaMountainView) {
