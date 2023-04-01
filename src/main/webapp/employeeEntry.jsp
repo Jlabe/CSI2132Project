@@ -74,9 +74,12 @@
 
     <%
         com.demo.RoomBookingService roomBookingService = new com.demo.RoomBookingService();
+        com.demo.RoomService roomService = new com.demo.RoomService();
         List<RoomBooking> roomBookingList = new ArrayList<>();
 
         roomBookingList = roomBookingService.getRoomBookings();
+
+        //TODO Add a search for rooms functions
 
     %>
 
@@ -104,10 +107,13 @@
                     <input type="hidden" name="state_province" value="<%= roomBooking.getState_province() %>">
                     <input type="hidden" name="zip" value="<%= roomBooking.getZip() %>">
                     <input type="hidden" name="room_number" value="<%= roomBooking.getRoom_number() %>">
+                    <input type="hidden" name="booking_date" value="<%= roomBooking.getBooking_date() %>">
                     <input type="hidden" name="check_in_date" value="<%= roomBooking.getCheck_in_date() %>">
                     <input type="hidden" name="check_out_date" value="<%= roomBooking.getCheck_out_date() %>">
                     <input type="hidden" name="ssn" value="<%= roomBooking.getSsn() %>">
-                    <button type="submit" class="edit-button">Edit</button>
+                    <label for="worker_ssn">Worker SSN:</label>
+                    <input type="text" name="worker_ssn">
+                    <button type="submit" class="edit-button">Convert to Renting</button>
                 </form>
 
             </li>
@@ -117,15 +123,27 @@
 
     <div class="right">
         <h2>Rent a Room</h2>
-        <form id="rent-room-form">
-            <label for="customer_name">Customer Name:</label>
-            <input type="text" name="customer_name" id="customer_name" required>
-
-            <!-- Add other fields for user information -->
-
-            <label for="payment">Payment:</label>
-            <input type="number" name="payment" id="payment" required>
-
+        <form method="POST" action="RentingServlet" id="rent-room-form">
+            <label for="street_number">Street Number:</label>
+            <input type="number" name="street_number" id="street_number" required>
+            <label for="street_name">Street Name:</label>
+            <input type="text" name="street_name" id="street_name" required>
+            <label for="city">City:</label>
+            <input type="text" name="city" id="city" required>
+            <label for="state_province">State/Province:</label>
+            <input type="text" name="state_province" id="state_province" required>
+            <label for="zip">Zip:</label>
+            <input type="text" name="zip" id="zip" required>
+            <label for="room_number">Room Number:</label>
+            <input type="number" name="room_number" id="room_number" required>
+            <label for="check_in_date">Check In Date:</label>
+            <input type="date" name="check_in_date" id="check_in_date" required>
+            <label for="check_out_date">Check Out Date:</label>
+            <input type="date" name="check_out_date" id="check_out_date" required>
+            <label for="worker_ssn">Worker SSN:</label>
+            <input type="text" name="worker_ssn" id="worker_ssn" required>
+            <label for="ssn">Customer SSN:</label>
+            <input type="text" name="ssn" id="ssn" required>
             <button type="submit">Rent Room</button>
         </form>
     </div>

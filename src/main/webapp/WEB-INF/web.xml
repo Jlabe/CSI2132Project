@@ -61,6 +61,26 @@
     <servlet-class>com.demo.UpdateCustomerServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>EditEmployeeServlet</servlet-name>
+    <servlet-class>com.demo.EditEmployeeServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>UpdateEmployeeServlet</servlet-name>
+    <servlet-class>com.demo.UpdateEmployeeServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>EditRoomServlet</servlet-name>
+    <servlet-class>com.demo.EditRoomServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>UpdateRoomServlet</servlet-name>
+    <servlet-class>com.demo.UpdateRoomServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>SearchRoomsServlet</servlet-name>
     <url-pattern>/searchRooms</url-pattern>
@@ -117,6 +137,26 @@
     <servlet-name>UpdateCustomerServlet</servlet-name>
     <url-pattern>/UpdateCustomerServlet</url-pattern>
 
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>EditEmployeeServlet</servlet-name>
+    <url-pattern>/EditEmployeeServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>UpdateEmployeeServlet</servlet-name>
+    <url-pattern>/UpdateEmployeeServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>EditRoomServlet</servlet-name>
+    <url-pattern>/EditRoomServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>UpdateRoomServlet</servlet-name>
+    <url-pattern>/UpdateRoomServlet</url-pattern>
   </servlet-mapping>
 
 </web-app>

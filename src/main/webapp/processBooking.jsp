@@ -72,4 +72,6 @@
 
   RoomBookingService roomBookingService = new RoomBookingService();
   roomBookingService.createRoomBooking(roomBooking);
+
+  response.sendRedirect("index.jsp");
 %>

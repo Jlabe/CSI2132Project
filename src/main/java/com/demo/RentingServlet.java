@@ -31,14 +31,8 @@ public class RentingServlet extends HttpServlet {
 
         Date startDateSql = Date.valueOf(startDateLocal);
         Date endDateSql = Date.valueOf(endDateLocal);
-
-
-        //TODO remove this later
-        street_number = 12;
-        String worker_ssn = "401214567";
+        String worker_ssn = request.getParameter("worker_ssn");
         String ssn = request.getParameter("ssn");
-
-        // ... other attributes
 
         // Create the RoomRenting object
         RoomRenting roomRenting = new RoomRenting(
@@ -52,6 +46,33 @@ public class RentingServlet extends HttpServlet {
                 endDateSql,
                 worker_ssn,
                 ssn);
+
+
+        if (request.getParameter("booking_date") != null){
+            String bookingDate = request.getParameter("booking_date");
+            LocalDate bookingDateLocal = LocalDate.parse(bookingDate);
+            Date bookingDateSql = Date.valueOf(bookingDateLocal);
+
+            RoomBookingService roomBookingService = new RoomBookingService();
+            RoomBooking roomBooking = new RoomBooking(
+                    street_number,
+                    street_name,
+                    city,
+                    stateProvince,
+                    zip,
+                    room_number,
+                    bookingDateSql,
+                    startDateSql,
+                    endDateSql,
+                    ssn);
+
+            try {
+                roomBookingService.deleteRoomBooking(street_number,street_name, city, stateProvince, zip, room_number, bookingDateSql);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
 
         // Call the createRoomRenting method
         try {

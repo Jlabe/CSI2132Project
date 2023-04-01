@@ -7,9 +7,10 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-public class UpdateCustomerServlet extends HttpServlet {
+public class UpdateEmployeeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String ssn = request.getParameter("ssn");
+        String worker_ssn = request.getParameter("worker_ssn");
+        String manager_ssn = request.getParameter("manager_ssn");
         String firstName = request.getParameter("first_name");
         String middleName = request.getParameter("middle_name");
         String lastName = request.getParameter("last_name");
@@ -19,30 +20,28 @@ public class UpdateCustomerServlet extends HttpServlet {
         String city = request.getParameter("city");
         String stateProvince = request.getParameter("stateProvince");
         String zip = request.getParameter("zip");
-        String registrationDate = request.getParameter("registration_date");
 
-        CustomerService customerService = new CustomerService();
-        Customer customer = new Customer(
-                ssn,
+        EmployeeService employeeService = new EmployeeService();
+        Employee employee = new Employee(
+                worker_ssn,
+                manager_ssn,
                 firstName,
                 middleName,
                 lastName,
                 streetNumber,
                 streetName,
+                aptNumber,
                 city,
                 stateProvince,
-                aptNumber,
-                zip,
-                registrationDate
+                zip
         );
 
         try {
-            customerService.updateCustomer(customer);
+            employeeService.updateEmployee(employee);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
         response.sendRedirect("insertions.jsp");
     }
-
 }
