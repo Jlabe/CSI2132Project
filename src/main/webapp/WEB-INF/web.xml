@@ -48,6 +48,17 @@
   <servlet>
     <servlet-name>InsertHotelServlet</servlet-name>
     <servlet-class>com.demo.InsertHotelServlet</servlet-class>
+
+  </servlet>
+
+  <servlet>
+    <servlet-name>EditCustomerServlet</servlet-name>
+    <servlet-class>com.demo.EditCustomerServlet</servlet-class>
+  </servlet>
+
+  <servlet>
+    <servlet-name>UpdateCustomerServlet</servlet-name>
+    <servlet-class>com.demo.UpdateCustomerServlet</servlet-class>
   </servlet>
 
   <servlet-mapping>
@@ -86,6 +97,7 @@
   </servlet-mapping>
 
   <servlet-mapping>
+
     <servlet-name>InsertRoomServlet</servlet-name>
     <url-pattern>/InsertRoomServlet</url-pattern>
   </servlet-mapping>
@@ -93,6 +105,18 @@
   <servlet-mapping>
     <servlet-name>InsertHotelServlet</servlet-name>
     <url-pattern>/InsertHotelServlet</url-pattern>
+
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>EditCustomerServlet</servlet-name>
+    <url-pattern>/EditCustomerServlet</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>UpdateCustomerServlet</servlet-name>
+    <url-pattern>/UpdateCustomerServlet</url-pattern>
+
   </servlet-mapping>
 
 </web-app>

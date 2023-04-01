@@ -141,7 +141,7 @@ public class CustomerService {
         String message = "";
 
         // sql query
-        String sql = "UPDATE Customer SET ssn = ? ,first_name = ?, middle_name = ?, last_name = ?, street_number = ?,street_name = ?, apt_number = ?, state_province = ? ,zip = ?, registration_date = ? WHERE ssn = ?;";
+        String sql = "UPDATE Customer SET ssn = ? ,first_name = ?, middle_name = ?, last_name = ?, street_number = ?,street_name = ?, apt_number = ?, city = ?, state_province = ? ,zip = ?, registration_date = ? WHERE ssn = ?;";
 
         // connection object
         ConnectionDB db = new ConnectionDB();
@@ -171,7 +171,7 @@ public class CustomerService {
 
             stmt.setDate(11, sqlDate);
 
-
+            stmt.setString(12, customer.getSSN());
             // execute the query
             stmt.executeUpdate();
 
@@ -184,6 +184,45 @@ public class CustomerService {
 
         // return respective message
         return message;
+    }
+
+    public Customer getCustomerByUniqueId(String ssn) throws Exception {
+
+        String sql = "SELECT * FROM customer WHERE ssn = ?";
+
+        ConnectionDB db = new ConnectionDB();
+
+        try (Connection con = db.getConnection()) {
+            PreparedStatement stmt = con.prepareStatement(sql);
+
+            stmt.setString(1, ssn);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Customer customer = new Customer(
+                        rs.getString("ssn"),
+                        rs.getString("first_name"),
+                        rs.getString("middle_name"),
+                        rs.getString("last_name"),
+                        rs.getInt("street_number"),
+                        rs.getString("street_name"),
+                        rs.getString("city"),
+                        rs.getString("state_province"),
+                        rs.getInt("apt_number"),
+                        rs.getString("zip"),
+                        rs.getString("registration_date")
+                );
+                return customer;
+            } else {
+                throw new Exception("Room not found");
+            }
+        } catch (Exception e) {
+            // throw any errors occurred
+            throw new Exception(e.getMessage());
+        } finally {
+            db.close();
+        }
     }
 
 }

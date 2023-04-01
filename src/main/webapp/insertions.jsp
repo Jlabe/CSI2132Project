@@ -154,7 +154,10 @@
                         <button type="submit" class="btn btn-danger">DELETE</button>
                     </form>
                 </td>
-                <td><a href="">EDIT</a></td>
+                <td><form action="EditCustomerServlet" method="POST">
+                    <input type="hidden" name="ssn" value="<%= customer.getSSN() %>">
+                    <button type="submit" class="btn btn-primary">EDIT</button>
+                </form></td>
                 <td><%= customer.getSSN() %></td>
                 <td><%= customer.getFirst_name() %></td>
                 <td><%= customer.getMiddle_name() %></td>
@@ -426,60 +429,6 @@
     <% } %>
 </div>
 
-<script>
-    // Add JavaScript code to handle form submission, delete and update operations.
-    // You may use AJAX to interact with the server and update the page without refreshing.
 
-    // Function to load data into tables
-    function loadData() {
-        // Load data for each entity using AJAX and populate their respective tables
-        // Example for customer:
-        $.ajax({
-            url: "customer_controller.jsp",
-            type: "GET",
-            data: { action: "fetchAll" },
-            dataType: "json",
-            success: function(data) {
-                // Populate customer table
-                // Clear the table before adding new data
-                $("#customer-table tbody").empty();
-                for (var i = 0; i < data.length; i++) {
-                    var customer = data[i];
-                    var row = "<tr><td>" + customer.ssn + "</td><td>" + customer.firstName + "</td><td>" + customer.middleName + "</td><td>" + customer.lastName + "</td><td>" + customer.streetNumber + "</td><td>" + customer.streetName + "</td><td>" + customer.city + "</td><td>" + customer.stateProvince + "</td><td>" + customer.aptNumber + "</td><td>" + customer.zip + "</td><td>" + customer.registrationDate + "</td></tr>";
-                    $("#customer-table tbody").append(row);
-                }
-            },
-            error: function() {
-                alert("Error fetching customer data");
-            }
-        });
-
-        // Repeat the above steps for Employee, Hotel, and Room tables
-    }
-
-    // Call loadData on page load
-    loadData();
-
-    // Handle form submission using AJAX
-    $("#customer-form").submit(function(event) {
-        event.preventDefault();
-        // Serialize form data
-        var formData = $(this).serialize();
-        $.ajax({
-            url: "customer_controller.jsp",
-            type: "POST",
-            data: formData,
-            success: function() {
-                loadData();
-            },
-            error: function() {
-                alert("Error submitting customer data");
-            }
-        });
-    });
-
-    // Add similar event handlers for Employee, Hotel, and Room forms
-
-</script>
 </body>
 </html>
