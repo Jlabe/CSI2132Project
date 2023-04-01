@@ -138,6 +138,25 @@ CREATE TABLE Room_Extendable
     FOREIGN KEY (street_number, street_name, city, state_province, zip, room_number) REFERENCES Room (street_number, street_name, city, state_province, zip, room_number)
 );
 
+-- Room Renting table
+CREATE TABLE Room_Renting
+(
+    street_number  INTEGER,
+    street_name    VARCHAR(100),
+    city           VARCHAR(100),
+    state_province VARCHAR(50),
+    zip            VARCHAR(10),
+    room_number    INTEGER,
+    check_in_date  DATE,
+    check_out_date DATE,
+    worker_ssn     VARCHAR(20) NOT NULL,
+    ssn            VARCHAR(20) NOT NULL,
+    PRIMARY KEY (street_number, street_name, city, state_province, zip, room_number, check_in_date, check_out_date),
+    FOREIGN KEY (worker_ssn) REFERENCES Employee (worker_ssn),
+    FOREIGN KEY (ssn) REFERENCES Customer (ssn),
+    FOREIGN KEY (street_number, street_name, city, state_province, zip, room_number) REFERENCES Room (street_number, street_name, city, state_province, zip, room_number)
+);
+
 -- Becomes table
 CREATE TABLE Becomes
 (
@@ -161,24 +180,6 @@ CREATE TABLE Becomes
 
 );
 
--- Room Renting table
-CREATE TABLE Room_Renting
-(
-    street_number  INTEGER,
-    street_name    VARCHAR(100),
-    city           VARCHAR(100),
-    state_province VARCHAR(50),
-    zip            VARCHAR(10),
-    room_number    INTEGER,
-    check_in_date  DATE,
-    check_out_date DATE,
-    worker_ssn     VARCHAR(20) NOT NULL,
-    ssn            VARCHAR(20) NOT NULL,
-    PRIMARY KEY (street_number, street_name, city, state_province, zip, room_number, check_in_date, check_out_date),
-    FOREIGN KEY (worker_ssn) REFERENCES Employee (worker_ssn),
-    FOREIGN KEY (ssn) REFERENCES Customer (ssn),
-    FOREIGN KEY (street_number, street_name, city, state_province, zip, room_number) REFERENCES Room (street_number, street_name, city, state_province, zip, room_number)
-);
 
 ---------------------------------------------------------------------------------------------------------------------------------------------
 -- TRIGGERS AND FUNCTIONS
